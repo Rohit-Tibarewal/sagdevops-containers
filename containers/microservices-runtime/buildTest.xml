@@ -130,7 +130,7 @@
 		
         
 		<path id="junitClasspath">
-			<fileset dir='${workspace.dir}/lib' includes="*.jar" />
+			<fileset dir='${ivy.jar.dir}' includes="*.jar" />
 		</path>	
 	  
 		<mkdir dir="${testPackageReportsDir}" />
