@@ -4,7 +4,7 @@
     <dependencies>
      <!--   <dependency org="ant-contrib" name="ant-contrib" rev="1.0b3"/> -->
 		<dependency org="httpunit" name="httpunit" rev="1.7"/>
-		<dependency org="junit" name="junit" rev="4.8.2"/>
+		<dependency org="junit" name="junit" rev="4.13.2"/>
 		<dependency org="xmlunit" name="xmlunit" rev="1.0"/>
 	        <dependency org="javax.xml.soap" name="saaj-api" rev="1.3.2"/>
     </dependencies>
