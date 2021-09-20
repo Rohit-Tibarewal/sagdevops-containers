@@ -126,9 +126,11 @@
 	<!--execute only if the XML Test directory exists in the test package -->
 	<target name="junitTestAndReportXML" depends="junitInitTest,junitCleanUp">
 		<echo message="Starting JUnit tests for package '${testPackageName}'"/>
+		<echo message="Load all jar files from '${workspace.dir}/lib'"/>
+		
         
 		<path id="junitClasspath">
-			<fileset dir="${workspace.dir}/lib" includes="*.jar" />
+			<fileset dir='${workspace.dir}/lib' includes="*.jar" />
 		</path>	
 	  
 		<mkdir dir="${testPackageReportsDir}" />
