@@ -128,7 +128,7 @@
 		<echo message="Starting JUnit tests for package '${testPackageName}'"/>
         
 		<path id="junitClasspath">
-			<fileset dir="./lib" includes="*.jar" />
+			<fileset dir="${workspace.dir}/lib" includes="*.jar" />
 		</path>	
 	  
 		<mkdir dir="${testPackageReportsDir}" />
