@@ -28,9 +28,12 @@ services:
       args:
         - PRODUCT_IMAGE=${REG_HOST:-docker.io}/${REG_ORG:-store/softwareag}/${REPO_NAME:-webmethods-microservicesruntime}:${REPO_TAG:-10.5.0.0}
         - BASE_IMAGE=centos:8
+    volumes:
+      - /home/saguser/properties/prod/application.properties:/opt/softwareag/application.properties
+      - /home/saguser/licenses/0000497888_MicroservicesRuntime_100.xml:/opt/softwareag/IntegrationServer/config/licenseKey.xml
     ports:
       - ${TEST_CONTAINER_PORT:-5555}:5555                            # container specific ports 1
-    hostname: microservices-runtime
+    hostname: msr107
   universal-messaging:
     container_name: ${TEST_CONTAINER_NAME:-umtest}
     image: ${TARGET_REG_HOST}/${TARGET_REG_ORG}/${TARGET_REPO_NAME}:${TARGET_REPO_TAG}
