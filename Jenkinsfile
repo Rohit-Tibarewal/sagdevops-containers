@@ -24,17 +24,17 @@ pipeline {
         string(name: 'testProperties', defaultValue: ' -DtestISUsername=Administrator -DtestISPassword=manage', description: 'test properties. The default are covering the IS test case.')
     }
     environment {
-      REG_HOST="${params.sourceContainerRegistryHost}"
-      REG_ORG="${params.sourceContainerRegistryOrg}"
-      REPO_NAME="${params.sourceImageName}"
-      REPO_TAG="${params.sourceImageTag}"
-      TEST_CONTAINER_HOST="${params.testContainerHost}"
-      TEST_CONTAINER_PORT="${params.testContainerPort}"
-      TARGET_REG_HOST="${params.targetContainerRegistryHost}"
-      TARGET_REG_ORG="${params.targetContainerRegistryOrg}"
-      TARGET_REPO_NAME="${params.targetImageName}"
-      TARGET_REPO_TAG="${params.targetImageTag}"
-      TEST_CONTAINER_NAME="${BUILD_TAG}"  
+      // REG_HOST="${params.sourceContainerRegistryHost}"
+      // REG_ORG="${params.sourceContainerRegistryOrg}"
+      // REPO_NAME="${params.sourceImageName}"
+      // REPO_TAG="${params.sourceImageTag}"
+      // TEST_CONTAINER_HOST="${params.testContainerHost}"
+      // TEST_CONTAINER_PORT="${params.testContainerPort}"
+      // TARGET_REG_HOST="${params.targetContainerRegistryHost}"
+      // TARGET_REG_ORG="${params.targetContainerRegistryOrg}"
+      // TARGET_REPO_NAME="${params.targetImageName}"
+      // TARGET_REPO_TAG="${params.targetImageTag}"
+       TEST_CONTAINER_NAME="${BUILD_TAG}"  
     }
     
     
