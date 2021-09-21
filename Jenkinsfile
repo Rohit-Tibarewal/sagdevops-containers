@@ -56,7 +56,7 @@ pipeline {
                 script {
                   dir ('./containers') {
                         docker.withRegistry("https://${params.sourceContainerRegistryHost}", "${params.sourceContainerRegistryCredentials}"){
-                            sh "docker-compose up -d --force-recreate --remove-orphans ${params.buildScenario}"
+                            sh "docker-compose --env-file ./containers/microservices-runtime/config/env.dev up -d --force-recreate --remove-orphans ${params.buildScenario}"
                         }
                     }
                 }
