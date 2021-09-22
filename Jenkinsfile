@@ -82,7 +82,8 @@ pipeline {
             steps {
                 script {
                   dir ('./containers') {
-                        sh "docker-compose stop ${params.buildScenario}"
+                       sh echo docker-compose stop ${params.buildScenario} 
+                      // sh "docker-compose stop ${params.buildScenario}"
                     }
                 }
             }
