@@ -3,23 +3,23 @@ pipeline {
    
     parameters {
         string(name: 'buildScenario', defaultValue: 'microservices-runtime', description: 'Asset type to be build and pushed - available options: "microservices-runtime", "universal-messaging"')
-        string(name: 'sourceContainerRegistryCredentials', defaultValue: '', description: 'Source container registry credentials') 
+        string(name: 'sourceContainerRegistryCredentials', defaultValue: 'cred-rohit-dockerhub', description: 'Source container registry credentials') 
 
         string(name: 'sourceContainerRegistryHost', defaultValue: 'docker.io', description: 'Source registry host. Default points to docker store.') 
-        string(name: 'sourceContainerRegistryOrg', defaultValue: 'store/softwareag', description: 'Source registry organization. Default points to SoftwareAG organization at docker store.') 
-        string(name: 'sourceImageName', defaultValue: 'webmethods-microservicesruntime', description: 'Source image name. Sample values from docker hub - "webmethods-microservicesruntime" and "universalmessaging-server". Check here fo all available in docker store https://hub.docker.com/search?q=softwareag&type=image&image_filter=store') 
-        string(name: 'sourceImageTag', defaultValue: '10.5', description: 'Source image tag. For available version check the Softwareag section at docker store.') 
+        string(name: 'sourceContainerRegistryOrg', defaultValue: 'rohittibarewal', description: 'Source registry organization. Default points to SoftwareAG organization at docker store.') 
+        string(name: 'sourceImageName', defaultValue: 'msr107centoswithvar', description: 'Source image name. Sample values from docker hub - "webmethods-microservicesruntime" and "universalmessaging-server". Check here fo all available in docker store https://hub.docker.com/search?q=softwareag&type=image&image_filter=store') 
+        string(name: 'sourceImageTag', defaultValue: 'base', description: 'Source image tag. For available version check the Softwareag section at docker store.') 
 
         
         string(name: 'testContainerHost', defaultValue: 'localhost', description: 'Host where the test container will be exposed') 
         string(name: 'testContainerPort', defaultValue: '5555', description: 'Port under which the test container will be reachable - e.g. 5555 or 9000. If multiple parallel pipelines are being executed, define different ports to avoid conflict on the host system - e.g. 5556, 5557, 5558.')       
         
-        string(name: 'targetContainerRegistryCredentials', defaultValue: '', description: 'Target container registry credentials') 
-        string(name: 'targetContainerRegistryHost', defaultValue: '', description: 'Target container registry host') 
-        string(name: 'targetContainerRegistryOrg', defaultValue: '', description: 'Target container registry organization') 
-        string(name: 'targetImageName', defaultValue: '', description: 'Target image name. Small caps only.') 
-        string(name: 'targetImageTag', defaultValue: '', description: 'Target image tag. A tag name must be valid ASCII and may contain lowercase and uppercase letters, digits, underscores, periods and dashes. A tag name may not start with a period or a dash and may contain a maximum of 128 characters.') 
-        booleanParam(name: 'runTests', defaultValue: true, description: 'Whether to run test stage')
+        string(name: 'targetContainerRegistryCredentials', defaultValue: 'cred-rohit-dockerhub', description: 'Target container registry credentials') 
+        string(name: 'targetContainerRegistryHost', defaultValue: 'docker.io', description: 'Target container registry host') 
+        string(name: 'targetContainerRegistryOrg', defaultValue: 'rohittibarewal', description: 'Target container registry organization') 
+        string(name: 'targetImageName', defaultValue: 'msr107centoswithvar', description: 'Target image name. Small caps only.') 
+        string(name: 'targetImageTag', defaultValue: 'latest', description: 'Target image tag. A tag name must be valid ASCII and may contain lowercase and uppercase letters, digits, underscores, periods and dashes. A tag name may not start with a period or a dash and may contain a maximum of 128 characters.') 
+        booleanParam(name: 'runTests', defaultValue: false, description: 'Whether to run test stage')
 
         string(name: 'testProperties', defaultValue: ' -DtestISUsername=Administrator -DtestISPassword=manage', description: 'test properties. The default are covering the IS test case.')
     }
