@@ -2,7 +2,8 @@ ARG PRODUCT_IMAGE
 
 FROM $PRODUCT_IMAGE as default
 COPY --chown=sagadmin assets/Packages /opt/softwareag/IntegrationServer/packages/
-#RUN ls -la /opt/softwareag/IntegrationServer/packages/
+RUN ls -la /opt/softwareag/IntegrationServer/packages/
+RUN mkdir -p /opt/softwareag/IntegrationServer/config/jndi
 
 #EXPOSE 5555
 
