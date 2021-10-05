@@ -98,5 +98,17 @@ pipeline {
                 }
             }
         }
+		stage("Release") {
+            steps {
+                steps {
+					sh '''
+					echo  "Rolling Update on K8S cluster"
+					minikube kubectl -- set image deployment.apps/msr-demo msr-demo-cn=${TARGET_REG_ORG}/${TARGET_REPO_NAME}:${TARGET_REPO_TAG}
+					echo  "Rolling Update on K8S cluster"
+					minikube kubectl -- rollout status deployment.apps/msr-demo -w
+					'''
+				}
+            }
+        }
     }
 }
