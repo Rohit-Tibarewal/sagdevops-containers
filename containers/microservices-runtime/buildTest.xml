@@ -50,17 +50,17 @@
 	  
   		<exec dir="${basedir}/containers/microservices-runtime" executable="/bin/bash" osfamily="unix" vmlauncher="false" failonerror="true" >
 			<arg value="-c" />
-			<arg value="docker cp  $( docker ps -q ):/opt/softwareag/common/lib/glassfish/gf.jakarta.mail.jar ../../lib" />
+			<arg value="docker cp  ${tempTestContainerName}:/opt/softwareag/common/lib/glassfish/gf.jakarta.mail.jar ../../lib" />
   		</exec>
 	  
   		<exec dir="${basedir}/containers/microservices-runtime" executable="/bin/bash" osfamily="unix" vmlauncher="false" failonerror="true" >
 			<arg value="-c" />
-			<arg value="docker cp $( docker ps -q ):/opt/softwareag/common/lib/wm-isclient.jar ../../lib" />
+			<arg value="docker cp ${tempTestContainerName}:/opt/softwareag/common/lib/wm-isclient.jar ../../lib" />
 		</exec>
 	  
 		<exec dir="${basedir}/containers/microservices-runtime" executable="/bin/bash" osfamily="unix" vmlauncher="false" failonerror="true" >
 			<arg value="-c" />
-			<arg value="docker cp $( docker ps -q ):/opt/softwareag/IntegrationServer/lib/wm-isserver.jar ../../lib" />
+			<arg value="docker cp ${tempTestContainerName}:/opt/softwareag/IntegrationServer/lib/wm-isserver.jar ../../lib" />
 		</exec>  
 	</target>
 
