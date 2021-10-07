@@ -22,6 +22,10 @@ pipeline {
         booleanParam(name: 'runTests', defaultValue: false, description: 'Whether to run test stage')
 
         string(name: 'testProperties', defaultValue: ' -DtestISUsername=Administrator -DtestISPassword=manage', description: 'test properties. The default are covering the IS test case.')
+		
+        string(name: 'deploymentName', defaultValue: 'msr-demo', description: 'The Deployment name whose container needs to be updated') 
+        string(name: 'targetContainerName', defaultValue: 'msr-demo-cn', description: 'The Container, inside given Deployment, whose image needs to be updated') 
+
     }
     environment {
        REG_HOST="${params.sourceContainerRegistryHost}"
@@ -101,10 +105,11 @@ pipeline {
 		stage("Release") {
             steps {
 					sh '''
-					echo  "Rolling Update on K8S cluster"
-					minikube kubectl -- set image deployment.apps/msr-demo msr-demo-cn=${TARGET_REG_ORG}/${TARGET_REPO_NAME}:${TARGET_REPO_TAG}
-					echo  "Rolling Update on K8S cluster"
-					minikube kubectl -- rollout status deployment.apps/msr-demo -w
+					echo  "Update the PATH"
+					export PATH=$PATH:/usr/local/bin:/usr/local/sbin
+                    echo  "Apply Rolling Update"
+					minikube kubectl -- set image deployment.apps/${params.deploymentName} ${params.targetContainerName}=${TARGET_REG_ORG}/${TARGET_REPO_NAME}:${TARGET_REPO_TAG}
+					minikube kubectl -- rollout status deployment.apps/${params.deploymentName} -w
 					'''
             }
         }
