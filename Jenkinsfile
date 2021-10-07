@@ -39,6 +39,8 @@ pipeline {
        TARGET_REPO_NAME="${params.targetImageName}"
        TARGET_REPO_TAG="${params.targetImageTag}"
        TEST_CONTAINER_NAME="${BUILD_TAG}"  
+	   DEPLOYMENT_NAME="${params.deploymentName}"
+       CONTAINER_NAME="${params.targetContainerName}"
     }
     
     
@@ -108,8 +110,8 @@ pipeline {
 					echo  "Update the PATH"
 					export PATH=$PATH:/usr/local/bin:/usr/local/sbin
                     echo  "Apply Rolling Update"
-					minikube kubectl -- set image deployment.apps/${params.deploymentName} ${params.targetContainerName}=${TARGET_REG_ORG}/${TARGET_REPO_NAME}:${TARGET_REPO_TAG}
-					minikube kubectl -- rollout status deployment.apps/${params.deploymentName} -w
+					minikube kubectl -- set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=${TARGET_REG_ORG}/${TARGET_REPO_NAME}:${TARGET_REPO_TAG}
+					minikube kubectl -- rollout status deployment/${DEPLOYMENT_NAME} -w					
 					'''
             }
         }
