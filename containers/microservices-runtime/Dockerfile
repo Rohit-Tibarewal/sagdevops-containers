@@ -6,8 +6,8 @@ RUN ls -la /opt/softwareag/IntegrationServer/packages/
 
 ADD isccr /tmp/isccr
 
-RUN sudo chmod +x /tmp/isccr/CodeReview.sh 
-RUN /tmp/isccr/CodeReview.sh -Dcode.review.directory=/opt/softwareag/IntegrationServer/packages/ -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev
+#RUN sudo chmod +x /tmp/isccr/CodeReview.sh 
+#RUN /tmp/isccr/CodeReview.sh -Dcode.review.directory=/opt/softwareag/IntegrationServer/packages/ -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev
 #EXPOSE 5555
 
 #COPY --chown=sagadmin ./scripts /src/scripts
