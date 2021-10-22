@@ -5,6 +5,7 @@ COPY --chown=sagadmin assets/Packages /opt/softwareag/IntegrationServer/packages
 RUN ls -la /opt/softwareag/IntegrationServer/packages/
 
 COPY --chown=sagadmin isccr /tmp/isccr
+COPY  licenses/license.txt /tmp/isccr/.
 
 RUN chmod +x /tmp/isccr/CodeReview.sh 
 #RUN /tmp/isccr/CodeReview.sh -Dcode.review.directory=/opt/softwareag/IntegrationServer/packages/ -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev
