@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>License - Integration Server Continuous Code Review</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../index.html">Integration Server Continuous Code Review</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../index.html">Overview</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li class="active">
+    <a href="License.html">License</a>
+</li>
+                                    
+<li >
+    <a href="Release Notes.html">Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Developers <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../Developers/API Documentation.html">API Documentation</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Decorators.html">Adding new Decorators</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Operations.html">Adding New Operations</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Reports.html">Adding New Reports</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Sensors.html">Adding New Sensors</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Customising Operations.html">Customising Operations</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../User Guide/Command Line Options.html">Command Line Options</a>
+</li>
+                                    
+<li >
+    <a href="../User Guide/Configuration Xml.html">config.xml</a>
+</li>
+                                    
+<li >
+    <a href="../User Guide/Continuous Integration (CI) Server.html">Continuous Integration (CI) Server</a>
+</li>
+                                    
+<li >
+    <a href="../User Guide/Eclipse Plugin.html">Eclipse Plugin</a>
+</li>
+                                    
+<li >
+    <a href="../User Guide/PRIME Review Checks.html">PRIME Review Checks</a>
+</li>
+                                    
+<li >
+    <a href="../User Guide/Reports.html">Reports</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../index.html">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="Release Notes.html">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#license">License</a></li>
+            <li><a href="#part-a-general-terms">PART A: GENERAL TERMS</a></li>
+            <li><a href="#part-b-additional-terms-commercial-license">PART B: ADDITIONAL TERMS COMMERCIAL LICENSE</a></li>
+            <li><a href="#part-c-not-applicable">PART C: NOT APPLICABLE</a></li>
+            <li><a href="#part-d-software-ag-evaluation-license-agreement-for-trial-versions-of-software-ag-product-only">PART D: SOFTWARE AG EVALUATION LICENSE AGREEMENT FOR TRIAL VERSIONS OF SOFTWARE AG PRODUCT ONLY</a></li>
+            <li><a href="#included-projects">Included Projects</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="license">License</h1>
+<p><strong>Integration Server Continuous Code Review</strong></p>
+<p><strong><em>PERFORMANCE.READY TOOLS</em></strong></p>
+<p>Software AG Global Consulting Services</p>
+<h2 id="part-a-general-terms">PART A: GENERAL TERMS</h2>
+<p>You are not allowed to install or use the Product without a corresponding
+license agreement.</p>
+<p>If you have entered into a commercial license agreement with one of
+Software AG's subsidiaries or distributors ("Commercial License Agreement")
+the installation and use of the Product is subject to your acceptance of
+additional terms which are provided in your agreement</p>
+<p><strong>COPYRIGHT AND TRADEMARK NOTICE</strong></p>
+<p>The name Software AG and all Software AG product names are either trademarks
+registered trademarks of Software AG and/or Software AG USA Inc. and/or its
+subsidiaries and/or its affiliates  and/or their licensors.</p>
+<p>Other company and product names mentioned herein may be trademarks of their
+respective owners </p>
+<p>Software AG or its subsidiaries are the sole owner of all intellectual
+property rights to the Products and accompanying user documentation or have
+the respective distribution rights. References made in or on the Products to
+the copyright and/or to the industrial property rights must not be altered,
+deleted or obliterated in any manner.</p>
+<p>No right, title or interest in any trademark or trade names of Software AG
+or its subsidiaries or its licensors is granted hereunder.</p>
+<p>(c) Copyright 2018 Software AG, Darmstadt, Germany and/or Software AG USA
+Inc., Reston, VA, USA and/or its subsidiaries and/or its affiliates and/or
+their licensors.</p>
+<h2 id="part-b-additional-terms-commercial-license">PART B: ADDITIONAL TERMS COMMERCIAL LICENSE</h2>
+<p>The Commercial License Agreement does not grant you the right to sublicense,
+rent, assign or lease the software, in whole or in part, and you may not
+decompile, disassemble, modify, decrypt, extract or otherwise reverse engineer,
+or make further copies of the software, except as explicitly permitted by
+the Commercial License Agreement.</p>
+<p>The software is designed for general office use. It is not designed or
+intended for use in air traffic control, mass transit systems, critical
+medical purposes, the operation of nuclear facilities or any other use which
+could result in a high risk of safety or property damage. You warrant that
+you will not use the software for such purposes.</p>
+<p>You may not download or otherwise export or re-export any underlying
+software, technology or other information from the Products except as stated
+explicitly in this notice or the Commercial License Agreement and in full
+compliance with all applicable national and international laws and
+regulations. You agree to indemnify and hold harmless and defend Software AG
+against any and all liability arising from or relating to your breach of these
+export control undertakings.  Software AG reserves the right not to honor any
+affected parts of this notice, or the Commercial License Agreement, in case
+any national or international export regulations or foreign trade legislation,
+or any target country / customer / usage restrictions implied by embargos or
+other sanctions prohibit the provision of export controlled goods
+(Dual-Use items) and services to be granted to you under either this notice
+or the Commercial License Agreement. Software AG may inform you if a related
+official export approval by national or international export control
+authorities is required. Provision of affected Products will then be postponed
+until all such required approvals have been granted. The provision of Products
+not restricted by the above mentioned export prohibitions will remain unaffected
+of this restriction.</p>
+<h2 id="part-c-not-applicable">PART C: NOT APPLICABLE</h2>
+<h2 id="part-d-software-ag-evaluation-license-agreement-for-trial-versions-of-software-ag-product-only">PART D: SOFTWARE AG EVALUATION LICENSE AGREEMENT FOR TRIAL VERSIONS OF SOFTWARE AG PRODUCT ONLY</h2>
+<p><strong><em>IMPORTANT: PLEASE READ THIS SOFTWARE AG EVALUATION LICENSE AGREEMENT CAREFULLY
+BEFORE INSTALLING THE PRODUCT! THE TERMS OF THIS EVALUATION LICENSE AGREEMENT
+APPLY ONLY IF YOU HAVE NOT ALREADY EXECUTED A COMMERCIAL LICENSE AGREEMENT FOR
+THE PRODUCT WITH A SOFTWARE AG SUBSIDIARY OR DISTRIBUTOR.</em></strong></p>
+<p>EVALUATION LICENSE AGREEMENT FOR TRIAL VERSION
+By installing the Product, you, as licensee, are entering into an agreement
+with Software AG, as licensor, with GENERAL TERMS as defined in Part A, as
+well as with terms set forth below (Part D). In case of conflicting terms
+between Part A and D, the terms of this Part D shall apply ("Evaluation)
+License Agreement"). If you do not agree to the terms of this agreement,
+you must immediately, and in any case before installation, destroy the
+Product and all copies of the Product in physical, electronic or other form.</p>
+<p>THE LICENSE
+With this Evaluation License Agreement, Software AG grants you - free of charge
+- a non-exclusive license to use the Product and accompanying documentation on
+a single computer, on a workstation or on a single terminal within a network
+for evaluation and testing purposes for a time period defined below (see
+section License Validity). In no event may the Product be deployed or used
+for any commercial production purpose such as developing new applications or
+testing, supporting, maintaining, or reengineering of existing applications,
+unless you acquire a commercial license from Software AG and pay the applicable
+license fees. You may not pass on copies of the Product to any third party or
+transfer the Product by electronic means to other computers via a network. For
+multi-user hardware systems or networks, a separate license is required for
+each user or each workstation. You have the right to make one copy of the
+Product solely for archival and backup purposes. You may not decompile,
+disassemble, modify, decrypt, extract or otherwise reverse engineer, or
+make further copies of the Product or parts thereof. This Evaluation License
+Agreement, with the downloaded or otherwise provided and used authorization
+key, is proof of your entering into this agreement and you must retain it. This
+Evaluation License Agreement does not grant you the right to sublicense,
+transfer, rent, assign or lease the Product, in whole or in part.</p>
+<p>THIRD PARTY RESTRICTIONS
+The Software may contain or include software applications for which the
+Licensor itself had to acquire a license to use from a third party
+("Third Party Applications"). These Third Party Applications may be subject
+to additional license terms ("Third Party Terms"), which are available under
+the web address http://documentation.softwareag.com/legal/thirdparty.htm.
+The third party shall be entitled - only in relation to the respective
+third-party software - to exercise the rights of Licensor under this Evaluation
+License Agreement as a third party beneficiary directly against the licensee.
+You may not use or distribute these third party applications or its APIs on a 
+stand-alone basis without the Product nor attempt to alter or modify it.  </p>
+<p>LICENSE VALIDITY
+This Evaluation License Agreement is limited to a period
+as defined in the license key file. The license might
+limit your use of the Product to certain features, platforms or restrictions
+in capacity or other limitations incorporated by default, by license key
+file. You accept these limitations and will in no event bypass these.</p>
+<p>COPYRIGHT
+Software AG or its affiliates are the sole owner of the industrial property
+rights and copyright to the Product and accompanying user documentation or
+have the respective distribution rights. References made in or on the Product
+to the copyright or to other industrial property rights must not be altered,
+deleted or obliterated in any manner.</p>
+<p>CONFIDENTIALITY
+The Product is confidential and proprietary information of Software AG and
+its licensors, and may not be disclosed to third parties. You shall use
+such information only for the purpose of exercising the Evaluation License
+Agreement to the Product and shall disclose confidential and proprietary
+information only to your employees who require such information for the
+purpose stated above. You agree to take adequate steps to protect the Product
+from unauthorized disclosure or use.</p>
+<p>LIMITED WARRANTY
+The Product is provided "as is" without any warranty whatsoever. You
+assume full responsibility for the selection of the Product to achieve your
+intended results and for the installation, use and results obtained from
+the Product. Any kind of support for the Software AG Product is explicitly
+excluded.</p>
+<p>UPDATES AND MAINTENANCE
+This Evaluation License Agreement does not grant you any right to, license
+for or interest in any improvements, modifications, enhancements or updates
+to the Product and documentation or other support services. Such services
+are typically available under a Commercial License Agreement only. Any such
+arrangements shall be the subject of a separate written agreement.</p>
+<p>LIMITATION OF LIABILITY
+Except where there is a mandatory statutory liability for intent, gross 
+negligence or injury to life, body or health, under no circumstances shall 
+Software AG or its licensors be liable for any damages whatsoever (including,
+without limitation, damages for loss of business profits, work stoppage, loss
+of data or other financial loss) arising from the use of, or inability to use,
+this Product. In no event shall any liability of Software AG arising out of 
+this agreement exceed the amount paid, if any, by you to Software AG hereunder.</p>
+<p>TERMINATION
+This Evaluation License Agreement will terminate immediately without notice
+from Software AG if you fail to comply with any provision of this Evaluation
+License Agreement. Software AG reserves the right to terminate this agreement
+immediately for good cause, whereby good cause is understood as any gross
+breach of this agreement. Upon termination, you must immediately discontinue
+the use of the Product and destroy the Product and all copies of the Product
+in physical, electronic or other form. Upon request of Software AG licensee will 
+certify in written that use is discontinued and all copies of the Product are 
+destroyed.  </p>
+<p>EXPORT
+You may not download or otherwise export or re-export any underlying
+software, technology or other information from the Products except as stated
+explicitly in this notice or the Commercial License Agreement and in full
+compliance with all applicable national and international laws and
+regulations. You agree to indemnify and hold harmless and defend Software AG
+against any and all liability arising from or relating to your breach of these
+export control undertakings.  Software AG reserves the right not to honor any
+affected parts of this notice, or the Commercial License Agreement, in case
+any national or international export regulations or foreign trade legislation,
+or any target country / customer / usage restrictions implied by embargos or
+other sanctions prohibit the provision of export controlled goods
+(Dual-Use items) and services to be granted to you under either this notice
+or the Commercial License Agreement. Software AG may inform you if a related
+official export approval by national or international export control
+authorities is required. Provision of affected Products will then be postponed
+until all such required approvals have been granted. The provision of Products
+not restricted by the above mentioned export prohibitions will remain unaffected
+of this restriction.</p>
+<p>MISCELLANEOUS
+The Product is designed for general office use. It is not designed or
+intended for use in air traffic control, mass transit systems, critical
+medical purposes, the operation of nuclear facilities or any other use which
+could result in a high risk of safety or property damage. You warrant that
+you will not use the Product for such purposes.</p>
+<p>The invalidity of any provision of this agreement shall not affect any other
+part of this agreement. This agreement represents the complete and exclusive
+statement concerning this Evaluation License Agreement between the parties. No
+modification or amendment of this agreement will be binding on any party
+unless acknowledged in writing by their duly authorized representatives. This
+agreement shall be governed and construed by the laws of the Federal Republic
+of Germany.</p>
+<h2 id="included-projects">Included Projects</h2>
+<p>Themes used under license from the ReadTheDocs projects.</p>
+<ul>
+<li>ReadTheDocs theme - <a href="https://github.com/snide/sphinx_rtd_theme/blob/master/LICENSE">View license</a>.</li>
+</ul>
+<p>Many thanks to the authors and contributors of those wonderful projects.</p>
+<h3 id="mkdocs-license-bsd">MkDocs License (BSD)</h3>
+<p>Copyright © 2014, Tom Christie. All rights reserved.</p>
+<p>Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:</p>
+<p>Redistributions of source code must retain the above copyright notice, this list
+of conditions and the following disclaimer. Redistributions in binary form must
+reproduce the above copyright notice, this list of conditions and the following
+disclaimer in the documentatio and/or other materials provided with the
+distribution.</p>
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+<h3 id="chartjsorg-mit">ChartJS.org (MIT)</h3>
+<ul>
+<li>The MIT License (MIT) - <a href="https://github.com/chartjs/Chart.js/blob/master/LICENSE.md">View license</a>.</li>
+</ul>
+<p>Copyright (c) 2018 Chart.js Contributors</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<h3 id="google-charts-creative-commons-attribution">Google Charts (Creative Commons Attribution)</h3>
+<p><a href="https://developers.google.com/chart/terms">Terms of use</a></p>
+<p><a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

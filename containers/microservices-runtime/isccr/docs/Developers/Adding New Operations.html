@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Adding New Operations - Integration Server Continuous Code Review</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../index.html">Integration Server Continuous Code Review</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../index.html">Overview</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../About/License.html">License</a>
+</li>
+                                    
+<li >
+    <a href="../About/Release Notes.html">Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Developers <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="API Documentation.html">API Documentation</a>
+</li>
+                                    
+<li >
+    <a href="Adding New Decorators.html">Adding new Decorators</a>
+</li>
+                                    
+<li class="active">
+    <a href="Adding New Operations.html">Adding New Operations</a>
+</li>
+                                    
+<li >
+    <a href="Adding New Reports.html">Adding New Reports</a>
+</li>
+                                    
+<li >
+    <a href="Adding New Sensors.html">Adding New Sensors</a>
+</li>
+                                    
+<li >
+    <a href="Customising Operations.html">Customising Operations</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../User Guide/Command Line Options.html">Command Line Options</a>
+</li>
+                                    
+<li >
+    <a href="../User Guide/Configuration Xml.html">config.xml</a>
+</li>
+                                    
+<li >
+    <a href="../User Guide/Continuous Integration (CI) Server.html">Continuous Integration (CI) Server</a>
+</li>
+                                    
+<li >
+    <a href="../User Guide/Eclipse Plugin.html">Eclipse Plugin</a>
+</li>
+                                    
+<li >
+    <a href="../User Guide/PRIME Review Checks.html">PRIME Review Checks</a>
+</li>
+                                    
+<li >
+    <a href="../User Guide/Reports.html">Reports</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="Adding New Decorators.html">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="Adding New Reports.html">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#adding-new-operations">Adding New Operations</a></li>
+            <li><a href="#additional-operations-using-existing-implementation-methods">Additional Operations Using existing implementation methods</a></li>
+            <li><a href="#adding-a-new-operation-implementation">Adding a new operation implementation</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="adding-new-operations">Adding New Operations</h1>
+<p>ISCCR can be extended with you own checks, either making use of the already implemented operation classes, or by implementing your own operation.  This section describes how to build a custom operation, compile and use.  There is additional Javadoc documentation distributed with ISCCR to describe the methods that you can use during extension development.</p>
+<h2 id="additional-operations-using-existing-implementation-methods">Additional Operations Using existing implementation methods</h2>
+<h3 id="cache-check-using-the-existing-service-property-implementation">Cache Check using the existing Service Property implementation</h3>
+<p>Let’s create a new code check to ensure caching is enabled – perhaps as an example we have a configuration package that should always have the cache enabled rather than retrieving the config entries from the file each time.
+The cache option exists in the <code>node.ndf</code> file and looks like:</p>
+<pre><code class="xml">&lt;value name=&quot;caching&quot;&gt;no&lt;/value&gt;
+</code></pre>
+
+<p>Where the value can be yes or no.</p>
+<p>To achieve this as a check we can want to use the ServiceProperties operation class, and can add a config entry as follows:</p>
+<pre><code class="xml">&lt;check id=&quot;MY1&quot; name=&quot;Cache Enabled&quot; enabled=&quot;true&quot; ignoreFailure=&quot;true&quot;&gt;
+&lt;description&gt;Service cache should be enabled&lt;/description&gt;
+    &lt;implementation&gt;
+        &lt;class&gt;com.softwareag.gcs.wm.codereview.operations.ServiceProperties&lt;/class&gt;
+        &lt;parameters&gt;
+            &lt;parameter&gt;caching&lt;/parameter&gt;
+            &lt;parameter&gt;yes&lt;/parameter&gt;
+        &lt;/parameters&gt;
+    &lt;/implementation&gt;
+&lt;/check&gt;
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The check id must be unique.</p>
+</div>
+<h3 id="invoke-comment-check-using-the-existing-xpath-implementation">Invoke Comment Check Using the existing XPath implementation</h3>
+<p>Let’s create a new flow check.  Perhaps we have a coding standard where every service invocation should have an associated comment and we want to review this to ensure comments are provided.
+i
+The flow code lives in the flow XML file that the XPath Operation works against</p>
+<p>In this file, you can see an invoke with a comment looks as follows:</p>
+<pre><code class="xml">&lt;INVOKE TIMEOUT=&quot;&quot; SERVICE=&quot;pub.math:addInts&quot; VALIDATE-IN=&quot;$none&quot; VALIDATE-OUT=&quot;$none&quot;&gt;
+  &lt;COMMENT&gt;A comment against an invoke&lt;/COMMENT&gt;
+ …
+&lt;/INVOKE&gt;
+</code></pre>
+
+<p>Therefore an XPath statement to check whether a comment has been entered or not can be constructed as follows:
+<code>count(//INVOKE[string-length(COMMENT)=0])!=0</code></p>
+<p>This counts all the invokes where the comment length is zero, and if the count is not zero, will return false, otherwise if the count is zero, it will return true, i.e. every invoke has a comment.</p>
+<p>To achieve this as a check we can add a config entry as follows:</p>
+<pre><code class="xml">&lt;check id=&quot;CUSTOM1&quot; name=&quot;Service invoke comments&quot; enabled=&quot;true&quot; ignoreFailure=&quot;true&quot;&gt;
+  &lt;description&gt;All service Invokes should have a comment&lt;/description&gt;
+  &lt;implementation&gt;
+     &lt;class&gt;com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker&lt;/class&gt;
+     &lt;parameters&gt;
+         &lt;parameter&gt;count(//INVOKE) = count(//INVOKE[string-length(COMMENT)=0])&lt;/parameter&gt;
+     &lt;/parameters&gt;
+  &lt;/implementation&gt;
+&lt;/check&gt;
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As previously this rule also has the ignoreFailure flag set to true, this means that if the rule does fail, it won’t abort the CI build process.</p>
+</div>
+<h2 id="adding-a-new-operation-implementation">Adding a new operation implementation</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The following sections requires extensive java skills</p>
+</div>
+<p>To add a new operation, you need to do two things</p>
+<ul>
+<li>Implement and compile a java class that extends the Abstract ‘Operation’ class to perform the operation required</li>
+<li>Add a new check to the configuration XML file that uses your new operation and provides any required parameters.</li>
+</ul>
+<h3 id="implementing-the-operation-class">Implementing the Operation Class</h3>
+<p>Within the distribution, a sample operation is provided within the src directory – SampleOperation.java
+You can use this as a template for building additional operations.</p>
+<p>Each new operation MUST extend the <code>com.softwareag.gcs.wm.codereview.operations.Operation</code> abstract class, and therefore implement the <code>performCheckOperation</code> method as follows:</p>
+<pre><code class="java">package com.softwareag.gcs.wm.codereview.operations;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import com.softwareag.gcs.wm.codereview.utils.FlowUtilities;
+
+public class SampleOperation extends com.softwareag.gcs.wm.codereview.operations.Operation
+{
+
+    /**
+     * Performs the code review check item
+     */
+    @Override
+    public void performCheckOperation()
+    {
+
+    }
+}
+</code></pre>
+
+<p>It’s also worthwhile changing the log level in the XML file to <code>TRACE</code>  and use the <code>LogWriter</code> within your operation to output log information </p>
+<p>The Operation class provides a number of useful functions you might need to implement your new code review operation.</p>
+<p>Also there are a number of utility functions provided within the package <code>com.softwareag.gcs.wm.codereview.utils</code> which are provided to simplify development of additional operations.</p>
+<p>These are fully documented as java-doc documentation and can be found in the ‘docs/api’ directory of the distribution.</p>
+<p>The sample operation provided performs a number of tasks to demonstrate how you might want to build an operation.  This Sample Operation as implemented checks that for every flow xml file, there should be a node NDF file.  This should always be the case, however it serves as a good demonstration.</p>
+<p>The tasks this performs are:</p>
+<ul>
+<li>Validate Parameters</li>
+<li>Get the List of Node NDF files</li>
+<li>Get the List of Flow Service Files</li>
+<li>Assert the test (i.e. Is there a NODE file for a FLOW XML file)</li>
+<li>Add the test to the results list</li>
+</ul>
+<p>For any test, you must add the test to the result using a call similar to:</p>
+<pre><code class="Java">this.addTestResults(assertion, fullServiceName, result);
+</code></pre>
+
+<p>You can create a main method in your operation (as demonstrated in the SampleOperation) so you can test the operation outside of the Code Review tool to enable you to debug this within your IDE.</p>
+<h3 id="building-the-new-operation-class">Building the New Operation Class</h3>
+<p>An ANT script is available to build any custom operations, sensors or decorators.  This can be found within the distribution directory and can be run as follows</p>
+<p><code>ant -f build-custom-classes.xml</code></p>
+<p>This will run the build of any custom operations, sensors and decorators within the src directory and will show a result similar to:</p>
+<pre><code>Buildfile: C:\SoftwareAG\tools\CodeReview\build-custom-classes.xml
+
+clean:
+   [delete] Deleting directory C:\SoftwareAG\tools\CodeReview\classes\com\softwareag\gcs\wm\codereview\operations
+
+compile:
+    [javac] C:\SoftwareAG\tools\CodeReview\build-operations.xml:9: warning: 'includeantruntime' was not set, defaulting to build.sysclassp
+ath=last; set to false for repeatable builds
+    [javac] Compiling 1 source file to C:\SoftwareAG\tools\CodeReview\classes
+
+build:
+
+BUILD SUCCESSFUL
+Total time: 1 second
+</code></pre>
+
+<p>The compiled class with be placed within the classes folder and will then be subsequently available to the ISCCR tool.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if you use additional libraries in your custom operation, you’ll need to modify the build-operations ant script to include these, and modify the script that starts the CodeReview to include the additional jar files.</p>
+</div>
+<h3 id="adding-the-configuration-entries">Adding the configuration entries</h3>
+<p>Next edit the configuration XML that will be used for the code review to include the check, e.g.</p>
+<pre><code class="xml">&lt;check id=&quot;MY2&quot; name=&quot;Sample Operation&quot; enabled=&quot;true&quot; ignoreFailure=&quot;false&quot;&gt;
+  &lt;description&gt;Sample Operation&lt;/description&gt;
+  &lt;implementation&gt;
+    &lt;class&gt;com.softwareag.gcs.wm.codereview.operations.SampleOperation&lt;/class&gt;
+    &lt;parameters&gt;
+      &lt;parameter&gt;MyParam1&lt;/parameter&gt;
+      &lt;parameter&gt;MyParam2&lt;/parameter&gt;
+    &lt;/parameters&gt;
+  &lt;/implementation&gt;
+&lt;/check&gt;
+</code></pre>
+
+<h3 id="running-the-operation">Running the Operation</h3>
+<p>On the next execution of the code review, your operation will be executed.  </p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

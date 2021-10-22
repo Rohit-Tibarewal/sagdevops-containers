@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>config.xml - Integration Server Continuous Code Review</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../index.html">Integration Server Continuous Code Review</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../index.html">Overview</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../About/License.html">License</a>
+</li>
+                                    
+<li >
+    <a href="../About/Release Notes.html">Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Developers <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../Developers/API Documentation.html">API Documentation</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Decorators.html">Adding new Decorators</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Operations.html">Adding New Operations</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Reports.html">Adding New Reports</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Sensors.html">Adding New Sensors</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Customising Operations.html">Customising Operations</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="Command Line Options.html">Command Line Options</a>
+</li>
+                                    
+<li class="active">
+    <a href="Configuration Xml.html">config.xml</a>
+</li>
+                                    
+<li >
+    <a href="Continuous Integration (CI) Server.html">Continuous Integration (CI) Server</a>
+</li>
+                                    
+<li >
+    <a href="Eclipse Plugin.html">Eclipse Plugin</a>
+</li>
+                                    
+<li >
+    <a href="PRIME Review Checks.html">PRIME Review Checks</a>
+</li>
+                                    
+<li >
+    <a href="Reports.html">Reports</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="Command Line Options.html">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="Continuous Integration (CI) Server.html">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#configxml">config.xml</a></li>
+            <li><a href="#global-parameters">Global Parameters</a></li>
+            <li><a href="#review-configuration">Review Configuration</a></li>
+            <li><a href="#sensors">Sensors</a></li>
+            <li><a href="#renderers">Renderers</a></li>
+        <li class="main "><a href="#override-configuration">Override Configuration</a></li>
+        <li class="main "><a href="#package-specific-configuration">Package Specific Configuration</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="configxml">config.xml</h1>
+<p>The configuration file provides the parameters, review checks, and the configuration of Integration Server Continuous Code Review.  The file is split into an number of sections</p>
+<h2 id="global-parameters">Global Parameters</h2>
+<p>Global parameters provide hard coded or environment variables that control the Code Review process.  The following parameters are specified in the configuration file</p>
+<h3 id="review-settings">Review Settings</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code.review.wmversion</td>
+<td>10.5</td>
+<td>This defines the current version of webMethods where the code is intended to be executed.  Rules that are version specific will be disabled if this attribute is a lower version that the one provided on the check (e.g. v10.3 TRY/CATCH/FINALLY node checks are not relevant in versions prior to v10.3, or version specific deprecations).  Out of the box, this parameter will be specified as the most recent supported version, however this can be modified, or defined to be supplied as an environment variable as needed.</td>
+</tr>
+<tr>
+<td>code.review.pkgname</td>
+<td>${code.review.pkgname}</td>
+<td>The package name to be reviewed, provided through an environment variable to the command line</td>
+</tr>
+<tr>
+<td>code.review.pkgprefix</td>
+<td>${code.review.pkgprefix}</td>
+<td>The prefix letters of the package to be review, provided through an environment variable to the command line</td>
+</tr>
+<tr>
+<td>folder-prefix</td>
+<td>${code.review.folder-prefix}</td>
+<td>The base folder structure required within every package, provided through an environment variable to the command line</td>
+</tr>
+<tr>
+<td>code.review.directory</td>
+<td>${code.review.directory}</td>
+<td>The location of the packages directory, provided through an environment variable to the command line</td>
+</tr>
+<tr>
+<td>code.review.output.directory</td>
+<td></td>
+<td>Provides the directory of where to output the files/reports.  By default this is empty meaning reports are output to the directory from where the code review process is executed.  It is recommended to leave this empty</td>
+</tr>
+<tr>
+<td>code.review.output.preserve</td>
+<td>false</td>
+<td>Whether to pre-pend the date to the report files names to allow you to keep the files over time, versus overwriting the previous report if the value is set to true.</td>
+</tr>
+<tr>
+<td>code.review.ignore.fail</td>
+<td>false</td>
+<td>When set to false, a negative return code will be output from the code review process on failure.  When set to true, this will not happen.  This parameter is useful as part of a continuous integration process where you wish to stop the build on any quality issues.  Recommended to leave set as <code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="review-tolerance-settings">Review Tolerance Settings</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code.review.tolerance.warn</td>
+<td>101</td>
+<td>Percentage of warnings that will be tolerated in the complete review, e.g. Setting this to 10 would allow for 10% of the total test to be warnings.  If the total number of warnings exceeds the set percentage, the review will be marked as failed.  Out of the box this is defaulted to 101% to allow for 100% of warnings to remain backwards compatibility with previous release</td>
+</tr>
+<tr>
+<td>code.review.tolerance.fail</td>
+<td>0</td>
+<td>Percentage of failures that will be tolerated in the complete review, e.g. Setting this to 10 would allow for 10% of the total test to be failures.  If the total number of failures exceeds the set percentage, the review will be marked as failed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="advanced-configuration-settings">Advanced Configuration Settings</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code.review.logger.level</td>
+<td>INFO</td>
+<td>Logging output level.  It is recommeneded to leave this as <code>INFO</code> unless you are developing new rules/conditions, and in those scenarios, you may wish to see more detailed logging output by changing the value to <code>TRACE</code>.  All supported values are TRACE; DEBUG; INFO; WARNING; SEVERE</td>
+</tr>
+<tr>
+<td>code.review.operation.threads.timeout</td>
+<td>120</td>
+<td>This value sets the timeout of the execution threads.  If a single check takes longer than the provided time here, it will be aborted.  It is recommended not to adjust this unless otherwise advised</td>
+</tr>
+<tr>
+<td>code.review.operation.threads.embedded</td>
+<td>3</td>
+<td>This is the number of threads to use for executing rules when not run in interactive mode.  It is recommended not to adjust this value unless otherwise advised</td>
+</tr>
+<tr>
+<td>code.review.operation.threads.interactive</td>
+<td>1</td>
+<td>This is the number of threads to use for executing rules when run in interactive mode.  It is recommended not to adjust this value unless otherwise advised</td>
+</tr>
+</tbody>
+</table>
+<p>Each global paremeter is provided / configured similar to the following example</p>
+<p><strong>Environment variable provided parameter</strong></p>
+<pre><code class="xml">&lt;globalParameter name=&quot;code.review.pkgprefix&quot;&gt;
+  &lt;description&gt;Package prefix&lt;/description&gt;
+  &lt;value&gt;${code.review.pkgprefix}&lt;/value&gt;
+&lt;/globalParameter&gt;
+</code></pre>
+
+<p><strong>Hard coded parameter</strong></p>
+<pre><code class="xml">&lt;globalParameter name=&quot;folder-prefix&quot;&gt;
+  &lt;description&gt;Root folder prefix used in all services&lt;/description&gt;
+  &lt;value&gt;com.softwareag&lt;/value&gt;
+&lt;/globalParameter&gt;
+</code></pre>
+
+<h2 id="review-configuration">Review Configuration</h2>
+<p>Each review check is specified using a common structure.  Each check has:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Example</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>SP1</td>
+<td>A unique short identifier for each check.  By default out of the box these follow a naming convention where SP=Service Property, FQ=Flow Quality, NS=Naming Standards, MS=Additional Checks</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Stateless</td>
+<td>The name of the check</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>true</td>
+<td>When set to <code>true</code> the check is included in a review, when set to <code>false</code> the check is excluded from any review</td>
+</tr>
+<tr>
+<td>ignoreFailure</td>
+<td>false</td>
+<td>When set to <code>true</code> failures are ignored.</td>
+</tr>
+<tr>
+<td>wmVersion</td>
+<td>10.3</td>
+<td>Determines the version of webMethods from when this rule is relevant.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>A description</td>
+<td>This is a full textual description and explanation of the review item</td>
+</tr>
+<tr>
+<td>Implementation/class</td>
+<td>com.softwareag....ServiceProperties</td>
+<td>Defines the Operation implementation to be used</td>
+</tr>
+<tr>
+<td>Implementation/parameters</td>
+<td>parameter[1]=stateless;parameter[2]=yes</td>
+<td>Provides parameters for the operation</td>
+</tr>
+<tr>
+<td>Implementation/exclusions</td>
+<td>exclusion[1]=REGEXP1;exclusion[2]=REGEXP2</td>
+<td>Implements an exclusion list to exclude matching assets from the review (see below for example)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The information on each of the checks can be found in <a href="PRIME Review Checks">User Guide/PRIME Review Checks</a></p>
+</div>
+<p>The following excerpt demonstrates an individual review item</p>
+<pre><code class="xml">&lt;check id=&quot;SP1&quot; name=&quot;Stateless&quot; enabled=&quot;true&quot; ignoreFailure=&quot;false&quot;&gt;
+  &lt;description&gt;&lt;![CDATA[Services should be stateless to avoid creating session state where not needed. Each session
+consumes resources on the IS, consumes memory, creates a database entry, and in a clustered environment needs
+to be synchronized between cluster nodes. To minimize the build-up of unnecessary sessions it is recommended to ensure stateless services are used where possible.  This can be changed on the 'stateless' flow property within Designer by setting the value to yes.
+The table below highlights all services in the package which are currently configured as stateless]]&gt;&lt;/description&gt;
+  &lt;implementation&gt;
+    &lt;class&gt;com.softwareag.gcs.wm.codereview.operations.ServiceProperties&lt;/class&gt;
+    &lt;parameters&gt;
+      &lt;parameter&gt;stateless&lt;/parameter&gt;
+      &lt;parameter&gt;yes&lt;/parameter&gt;
+    &lt;/parameters&gt;
+  &lt;/implementation&gt;
+&lt;/check&gt;
+</code></pre>
+
+<h3 id="exclusions">Exclusions</h3>
+<p>On some occasions, you may wish to exclude particular services or directories from the review.  To do this, you can supply a list of exclusions within the check.  The exclusions can be singular or multiples and are specified as a regular expression. For example:</p>
+<pre><code class="xml">&lt;check id=&quot;FQ10&quot; name=&quot;Service invoke comments&quot; enabled=&quot;true&quot; ignoreFailure=&quot;true&quot;&gt;
+  &lt;description&gt;&lt;![CDATA[Comments should be provided for each service that is invoked from the main service.  This helps to improve code readability and maintainability to help reduce cost of change.  Every service invoke should have a comment value set.]]&gt;&lt;/description&gt;
+  &lt;implementation&gt;
+    &lt;class&gt;com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker&lt;/class&gt;
+    &lt;parameters&gt;
+      &lt;parameter&gt;count(//INVOKE[string-length(COMMENT)=0 and not(@DISABLED)])=0&lt;/parameter&gt;
+    &lt;/parameters&gt;
+    &lt;exclusions&gt;
+      &lt;exclusion&gt;com\.softwareag\.example\.pub\:addNumber&lt;/exclusion&gt;
+    &lt;/exclusions&gt;
+  &lt;/implementation&gt;
+&lt;/check&gt;
+</code></pre>
+
+<h2 id="sensors">Sensors</h2>
+<p>Sensors provide the ability to glean metrics from the code, and can use a decorator to summarise or provide calculations based on the metrics</p>
+<p>Each sensor is specified using a common structure.  Each sensor has:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scope</td>
+<td>package</td>
+<td>Whether the sensor executes on an individual package <code>package</code> or the whole set of review assets in a multi-review <code>review</code></td>
+</tr>
+<tr>
+<td>definition/sensorName</td>
+<td>totals</td>
+<td>Name of the sensor</td>
+</tr>
+<tr>
+<td>definition/implementation</td>
+<td>com.softwareag...TotalsSensor</td>
+<td>Defines the sensor implementation to be used</td>
+</tr>
+<tr>
+<td>decorator/name</td>
+<td>FlowTotals</td>
+<td>Defines the name of any decorator</td>
+</tr>
+<tr>
+<td>decorator/implementation</td>
+<td>com.softwareag...FlowTotals</td>
+<td>Defines the decorator implementation to be used</td>
+</tr>
+</tbody>
+</table>
+<p>The following excerpt demonstrate an individual sensor (with decorator)</p>
+<pre><code class="xml">&lt;sensor scope=&quot;package&quot;&gt;
+  &lt;definition sensorName=&quot;totals&quot; sensorClass=&quot;com.softwareag.gcs.wm.codereview.sensors.TotalsSensor&quot;&gt;
+    &lt;decorator name=&quot;FlowTotals&quot; class=&quot;com.softwareag.gcs.wm.codereview.decorators.SummaryTotals&quot;/&gt;
+  &lt;/definition&gt;
+&lt;/sensor&gt;
+</code></pre>
+
+<h2 id="renderers">Renderers</h2>
+<p>A renderer processes the data of the report including the check results, sensors and decorators and determines what to do with the data.  By default there are 4 renderers providing functionality</p>
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XML</td>
+<td>all</td>
+<td>Writes the raw XML output to a file.</td>
+</tr>
+<tr>
+<td>HTML</td>
+<td>Single</td>
+<td>Writes a HTML report, created using the <code>GenerateReport.xsl</code> file</td>
+</tr>
+<tr>
+<td>HTML-MULTI</td>
+<td>Multi</td>
+<td>Writes a multi report for a mult-package review</td>
+</tr>
+<tr>
+<td>JUNIT</td>
+<td>all</td>
+<td>Writes an XML File in JUnit publishable format</td>
+</tr>
+<tr>
+<td>CSV</td>
+<td>all</td>
+<td>Writes the data as a CSV file that can be imported into other tools</td>
+</tr>
+</tbody>
+</table>
+<p>The following excerpt demonstrates an individual renderer</p>
+<pre><code class="xml">&lt;renderer name=&quot;html-package&quot; class=&quot;com.softwareag.gcs.wm.codereview.renderers.XSLRenderer&quot; scope=&quot;single&quot;&gt;
+  &lt;parameters&gt;
+    &lt;parameter&gt;GenerateReport.xsl&lt;/parameter&gt;
+    &lt;parameter&gt;%code.review.output.directory%&lt;/parameter&gt;
+    &lt;parameter&gt;%code.review.output.preserve%&lt;/parameter&gt;
+    &lt;parameter&gt;html&lt;/parameter&gt;
+  &lt;/parameters&gt;
+&lt;/renderer&gt;
+</code></pre>
+
+<h1 id="override-configuration">Override Configuration</h1>
+<p>Rather than modifying the main configuration file, which would result in difficulties with upgrading, receiving new out of the box checks, and potentially running in a non-supported manner, you can provide you own override configuration file by providing the command line parameter on startup </p>
+<p><code>-Dcode.review.options=myConfig.xml</code></p>
+<p>This configuration file can be used to override individual rules or parameters, e.g. you can create a file such as:</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;CodeCheckConfiguration xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; version=&quot;1.0&quot; xsi:noNamespaceSchemaLocation=&quot;C:\development\isccr\cont-code-review\trunk\FlowCodeChecker\CodeCheckConfiguration.xsd&quot;&gt;
+  &lt;globalParameters&gt;
+    &lt;!-- Value to use for the root folder checks --&gt;
+    &lt;globalParameter name=&quot;folder-prefix&quot;&gt;
+      &lt;description&gt;Root folder prefix used in all services&lt;/description&gt;
+      &lt;value&gt;com.myorganisation&lt;/value&gt;
+    &lt;/globalParameter&gt;
+  &lt;/globalParmeters&gt;    
+  &lt;checks&gt;
+    &lt;check id=&quot;SP2&quot; name=&quot;Pipeline Save Restore&quot; enabled=&quot;true&quot; ignoreFailure=&quot;true&quot;&gt;
+      &lt;description&gt;No Save/Restore Pipeline options should be set against the service.  The Save/Restore pipeline options where set can result in unnecessary I/O and therefore gives a reduced service performance as these services need to read or write to the disk and concurrent service execution could be compromised.  It is recommended to remote these options from the services before deployment to a non-development environment, or use the extended property (watt.server.pipeline.processor) to disable these in the non-development environments.  Where this is the case, this rule can be ignored&lt;/description&gt;
+      &lt;implementation&gt;
+        &lt;class&gt;com.softwareag.gcs.wm.codereview.operations.ServiceProperties&lt;/class&gt;
+        &lt;parameters&gt;
+          &lt;parameter&gt;pipeline_option&lt;/parameter&gt;
+          &lt;parameter&gt;0&lt;/parameter&gt;
+          &lt;parameter&gt;1&lt;/parameter&gt;
+        &lt;/parameters&gt;
+      &lt;/implementation&gt;
+    &lt;/check&gt;
+  &lt;/checks&gt;
+&lt;/CodeCheckConfiguration&gt;
+</code></pre>
+
+<p>This will:</p>
+<ul>
+<li>Modify the folder-prefix</li>
+<li>Override the ignoreFailure property for the SP2 rule to ignore failures</li>
+</ul>
+<h1 id="package-specific-configuration">Package Specific Configuration</h1>
+<p>An override configuration per package can be placed within the package and committed to source control, by creating a file <code>codereview.xml</code> within the package's <code>config</code> directory.  This is a particularly useful technical for (but not limited to) the following:</p>
+<ul>
+<li>Provide exclusions on individual checks</li>
+<li>Modify the behaviour of the connections package rule</li>
+<li>Provide exceptions to naming standards, particularly when related to generated document types.</li>
+</ul></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

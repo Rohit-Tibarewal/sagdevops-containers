@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Command Line Options - Integration Server Continuous Code Review</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../index.html">Integration Server Continuous Code Review</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../index.html">Overview</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../About/License.html">License</a>
+</li>
+                                    
+<li >
+    <a href="../About/Release Notes.html">Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Developers <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../Developers/API Documentation.html">API Documentation</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Decorators.html">Adding new Decorators</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Operations.html">Adding New Operations</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Reports.html">Adding New Reports</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Sensors.html">Adding New Sensors</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Customising Operations.html">Customising Operations</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li class="active">
+    <a href="Command Line Options.html">Command Line Options</a>
+</li>
+                                    
+<li >
+    <a href="Configuration Xml.html">config.xml</a>
+</li>
+                                    
+<li >
+    <a href="Continuous Integration (CI) Server.html">Continuous Integration (CI) Server</a>
+</li>
+                                    
+<li >
+    <a href="Eclipse Plugin.html">Eclipse Plugin</a>
+</li>
+                                    
+<li >
+    <a href="PRIME Review Checks.html">PRIME Review Checks</a>
+</li>
+                                    
+<li >
+    <a href="Reports.html">Reports</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../Developers/Customising Operations.html">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="Configuration Xml.html">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#command-line-options">Command Line Options</a></li>
+            <li><a href="#codereviewpkgname">code.review.pkgname</a></li>
+            <li><a href="#codereviewpkgprefix">code.review.pkgprefix</a></li>
+            <li><a href="#codereviewdirectory">code.review.directory</a></li>
+            <li><a href="#codereviewfolder-prefix">code.review.folder-prefix</a></li>
+            <li><a href="#codereviewrunmode">code.review.runmode</a></li>
+            <li><a href="#codereviewoptions">code.review.options</a></li>
+            <li><a href="#additional-jvm-options">Additional JVM Options</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="command-line-options">Command Line Options</h1>
+<p>This section of the documentation details all the available command line options that can be used during the execution of the code review engine. </p>
+<h2 id="codereviewpkgname">code.review.pkgname</h2>
+<p><code>-Dcode.review.pkgname=[PACKAGE NAME]</code></p>
+<div class="admonition warning">
+<p class="admonition-title">MANDATORY FOR SINGLE PACKAGE REVIEW</p>
+<p>This option is mandatory when performing a single package review  and must be provided, however, This can be excluded on a multi package review</p>
+</div>
+<p>This option provides the name of the package to be reviewed.  This name <strong>MUST</strong> match the exact case as to how the package was created in designer, For Example:</p>
+<pre><code>-Dcode.review.pgkname=IotDemo
+</code></pre>
+<h2 id="codereviewpkgprefix">code.review.pkgprefix</h2>
+<p><code>-Dcode.review.pkgprefix=[PREFIX or COMMA SEPARATED LIST OF PREFIXES]</code></p>
+<div class="admonition warning">
+<p class="admonition-title">MANDTORY</p>
+<p>This option is mandatory and must be provided</p>
+</div>
+<p>This option provides a prefix of the package, or a list of package prefixes where a multi-package review needs to include packages with different prefixes.  For example:</p>
+<pre><code>-Dcode.review.pkgprefix=Iot
+</code></pre>
+<p>or for a multi-package review</p>
+<pre><code>-Dcode.review.pkgprefix=Iot,Sag,Wx
+</code></pre>
+<h2 id="codereviewdirectory">code.review.directory</h2>
+<p><code>-Dcode.review.directory=[LOCATION OF PACKAGES DIRECTORY]</code></p>
+<div class="admonition warning">
+<p class="admonition-title">MANDATORY</p>
+<p>This option is mandatory and must be provided</p>
+</div>
+<p>This option provides the location of the packages directory.  This is normally the location as to where the packages have been checked out of source control, but could also point to the integration server packages directory.  For example:</p>
+<p><code>-Dcode.review.directory=c:\softwareag\IntegrationServer\instances\default\packages</code></p>
+<h2 id="codereviewfolder-prefix">code.review.folder-prefix</h2>
+<div class="admonition warning">
+<p class="admonition-title">MANDATORY</p>
+<p>This option is mandatory and must be provided</p>
+</div>
+<p>This option provides the The base folder structure required within every package.  Normally all packages are expected to have an identical base folder structure (e.g. com.softwareag), but packages from different organisational entities may have different base folder structures.  For example:</p>
+<p><code>-Dcode.review.folder-prefix=com.softwareag</code></p>
+<h2 id="codereviewrunmode">code.review.runmode</h2>
+<p><code>-Dcode.review.runmode=[MULTI]</code></p>
+<p>This option is option and only required when you want to perform a multi-package review.  In this scenario, you provide the command option as follows:</p>
+<pre><code>-Dcode.review.runmode=MULTI
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With a multi package review, the packagename option is not required, and a comma separated list of prefixes can be passed to the pkgprefix option</p>
+</div>
+<h2 id="codereviewoptions">code.review.options</h2>
+<p><code>-Dcode.review.options=[PATH TO OVERRIDE CONFIGURATION XML]</code></p>
+<p>This option allows you to provide a subset configuration xml to override the default behaviour and rules.  This allows you to create you own rulesets, exclusions, etc, without changing the base configuration file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a recommended approach as this allows for easier upgrades, and gives you the ability to quickly take advantage of new checks and rules on subsequent versions of the product</p>
+</div>
+<p>Example usage of this options is as follows:</p>
+<pre><code>-Dcode.review.options=c:\SoftwareAG\tools\ISCCR\myRules.xml
+</code></pre>
+<h2 id="additional-jvm-options">Additional JVM Options</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Any other JVM option can be provided as required.  You can parameterise the configuration using environment variables, and these can be passed as a -D option.  In addition, on rare occasions you may need to modify the JVM memory options with a -X parameter if a flow service is particularly large (which should be refactored regardless in that scenario!)</p>
+</div></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

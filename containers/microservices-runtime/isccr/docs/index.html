@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Integration Server Continuous Code Review</title>
+        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">Integration Server Continuous Code Review</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href="index.html">Overview</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="About/License.html">License</a>
+</li>
+                                    
+<li >
+    <a href="About/Release Notes.html">Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Developers <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="Developers/API Documentation.html">API Documentation</a>
+</li>
+                                    
+<li >
+    <a href="Developers/Adding New Decorators.html">Adding new Decorators</a>
+</li>
+                                    
+<li >
+    <a href="Developers/Adding New Operations.html">Adding New Operations</a>
+</li>
+                                    
+<li >
+    <a href="Developers/Adding New Reports.html">Adding New Reports</a>
+</li>
+                                    
+<li >
+    <a href="Developers/Adding New Sensors.html">Adding New Sensors</a>
+</li>
+                                    
+<li >
+    <a href="Developers/Customising Operations.html">Customising Operations</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="User Guide/Command Line Options.html">Command Line Options</a>
+</li>
+                                    
+<li >
+    <a href="User Guide/Configuration Xml.html">config.xml</a>
+</li>
+                                    
+<li >
+    <a href="User Guide/Continuous Integration (CI) Server.html">Continuous Integration (CI) Server</a>
+</li>
+                                    
+<li >
+    <a href="User Guide/Eclipse Plugin.html">Eclipse Plugin</a>
+</li>
+                                    
+<li >
+    <a href="User Guide/PRIME Review Checks.html">PRIME Review Checks</a>
+</li>
+                                    
+<li >
+    <a href="User Guide/Reports.html">Reports</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="disabled">
+                                <a rel="next" >
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="About/License.html">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#overview">Overview</a></li>
+        <li class="main "><a href="#compatibility">Compatibility</a></li>
+        <li class="main "><a href="#installation">Installation</a></li>
+            <li><a href="#code-review-engine">Code Review Engine</a></li>
+            <li><a href="#eclipse-plugin">Eclipse Plugin</a></li>
+            <li><a href="#wxisccr-package">WxISCCR Package</a></li>
+        <li class="main "><a href="#quick-start">Quick Start</a></li>
+            <li><a href="#windows-command-line-execution">Windows Command Line Execution</a></li>
+            <li><a href="#linux-command-line-execution">Linux Command Line Execution</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="overview">Overview</h1>
+<p>Integration Server Continuous Code Review (ISCCR) has been developed by Software AG Global Consulting Services, and is provided through subscription license as a PERFORMANCE.READY tool.  It's aim is to provide quality check processing for Integration Server developments, both as part of a continuous integration and local development approach with Integration Server.  It checks and enables a development team to improve quality of your Integration Server services thereby assisting with readability, quality, standardizaton and ultimately minimising cost of change and reduces the maintenance burden.</p>
+<p>This tool has a large number of customisable review points covering:</p>
+<ul>
+<li>Quality issues</li>
+<li>Common Mistakes</li>
+<li>Coding standards </li>
+<li>Deprecated services </li>
+</ul>
+<p>plus many other service properties and coding issues.</p>
+<h1 id="compatibility">Compatibility</h1>
+<p>Integration Server Continuous Code review is tested and compatible with the following releases of Integration Server:</p>
+<ul>
+<li>webNethods v10.5</li>
+<li>webMethods v10.4</li>
+<li>webMethods v10.3</li>
+<li>webMethods v10.2</li>
+<li>webMethods v10.1</li>
+<li>webMethods v10.0</li>
+<li>webMethods v9.12</li>
+<li>webMethods v9.10</li>
+<li>webMethods v9.9</li>
+<li>webMethods v9.8</li>
+<li>webMethods v9.7</li>
+<li>webMethods v9.6</li>
+<li>webMethods v9.5</li>
+<li>webMethods v9.0</li>
+<li>webMethods v8.2</li>
+</ul>
+<p>It has also been tested and is compatible with the following releases of the Microservices Runtime:</p>
+<ul>
+<li>webNethods v10.5</li>
+<li>webMethods v10.4</li>
+<li>webMethods v10.3</li>
+<li>webMethods v10.2</li>
+<li>webMethods v10.1</li>
+</ul>
+<p>Compatibility is also confirmed for the webMethods Service Designer Release which uses the Microservices Runtime</p>
+<h1 id="installation">Installation</h1>
+<h2 id="code-review-engine">Code Review Engine</h2>
+<h3 id="zip-file-extraction">Zip File Extraction</h3>
+<p>The ISCCR execution engine is distributed as a zip file and can simply be extracted into a location of your choosing (e.g. C:\SoftwareAG\tools\CodeReview within the file system.  The file system within the zip file must be maintained whilst extracting, and will create a file structure similar to:</p>
+<p><img alt="Screenshot" src="img/FileSystem.png" /></p>
+<h3 id="license-file">License File</h3>
+<p>Following extraction, before execution you’ll need to copy the code review engine licence file, renaming to license.txt into this directory, e.g.</p>
+<p><img alt="Screenshot" src="img/license.png" /></p>
+<h3 id="editing-codereviewcmd">Editing CodeReview.cmd</h3>
+<p>If you intend to use the sample windows script provided, and in particular if you’re running the code review from within a Continuous Integration tool such as Jenkins, this file will need modifying to including the full path to the location where the tool has been extracted, e.g. assuming you extract the file to:</p>
+<pre><code>c:\SoftwareAG\tools\ISCCR
+</code></pre>
+<p>You'll need to modify the CodeReview.cmd updating the CODEREVIEW_HOME environment variable, replacing the . with the full path to the installation directory i.e, find and replace the command</p>
+<pre><code>SET CODE_REVIEW_HOME=.
+</code></pre>
+<p>and change the '.' to your installation directory, e.g.</p>
+<pre><code>SET CODE_REVIEW_HOME=c:\SoftwareAG\tools\ISCCR
+</code></pre>
+<h3 id="setting-java_home">Setting JAVA_HOME</h3>
+<p>It's also recommended to set the JAVA_HOME environment variable.  The code review tool in windows will attempt to discover a suitable JVM to execute, however this should ideally be set teo the one distributed within webmethods, e.g.</p>
+<p><img alt="ScreenShot" src="img/env-vars.png" /></p>
+<h2 id="eclipse-plugin">Eclipse Plugin</h2>
+<p>The eclipse plugin is distributed as a zip file that can de installed into your Software AG designer eclipse environment as follows:</p>
+<ul>
+<li>Stop any instances of Designer that are currently running</li>
+<li>Browse to the designer eclipse dropins folder within the Software AG installation, </li>
+</ul>
+<p>e.g.</p>
+<pre><code>c:\SoftwareAG\Designer\eclipse\dropins
+</code></pre>
+<ul>
+<li>Remove any previous ISCCR directory from the dropins location</li>
+<li>Create a directory in the dropins location named:  <code>ISCCR</code></li>
+<li>Unzip the eclipse plugin into the ISCCR directory</li>
+</ul>
+<p>This should create a file system structure as follows </p>
+<pre><code>C:\SoftwareAG\Designer\eclipse\dropins\ISCCRv4\plugins\ContinuousCodeReview_Plugin_x.x.x.x.jar
+</code></pre>
+<ul>
+<li>Start Designer</li>
+<li>After a few minutes designer will start with the plugin installed</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please be patient – the installation will take a few minutes and designer may look like the process has hung.<br />
+Do NOT kill the designer process otherwise the installation will fail and further installations will be blocked without creating a different base directory (not called ISCCR) within the dropins location.*</p>
+</div>
+<ul>
+<li>On startup, enter the window/preferences settings as required, e.g:</li>
+</ul>
+<p><img alt="ScreenShot" src="img/eclispe-plugin.png" /></p>
+<ul>
+<li>Configure by pointing to the installation of the code review engine, and to the packages root folder within the designer where the plugin is installed</li>
+<li>Additionally, add the prefixes of custom packages that you wish to be reviewed and any JVM Parameters.  When finished press ok</li>
+</ul>
+<h2 id="wxisccr-package">WxISCCR Package</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This pacakge only exists to support the older Centralized (Non-Local Development) approach, and is otherwise not needed</p>
+</div>
+<p>The WxISCCR package is provided as a zip, that can be imported into the Integration Server as any other package, through the install inbound pacakges functionality.</p>
+<h1 id="quick-start">Quick Start</h1>
+<h2 id="windows-command-line-execution">Windows Command Line Execution</h2>
+<h3 id="single-package-review">Single Package Review</h3>
+<p>After following the installation notes above, ISCCR can be run in windows to review single packages  using the supplied command script by opening a command prompt, navigating to the extracted directory and supplying individual package details.</p>
+<p>The format of the command prompt is as follows:</p>
+<p><code>CodeReview.cmd</code></p>
+<p><code>-Dcode.review.directory=[LOCATION OF PACKAGES DIRECTORY]</code></p>
+<p><code>-Dcode.review.pkgname=[PACKAGE NAME]</code></p>
+<p><code>-Dcode.review.pkgprefix=[PACKAGE PREFIX LETTERS]</code></p>
+<h3 id="example">Example</h3>
+<p>Assuming a package named <code>IotDemo</code></p>
+<pre><code>CodeReview.cmd -Dcode.review.directory=c:\softwareag\IntegrationServer\instances\default\packages -Dcode.review.pkgname=IotDemo -Dcode.review.pkgprefix=Iot
+</code></pre>
+<p>The output of this command for a "Passed test" with "INFO" level logging will be similar to:</p>
+<pre><code>2019-05-21 18:54:03 INFO   webMethods Integration Server Continuous Code Review
+2019-05-21 18:54:03 INFO   Software AG Global Consulting Services
+2019-05-21 18:54:03 INFO   Copyright (C)2018 Software AG.  All rights reserved
+2019-05-21 18:54:03 INFO   Contact : GCS_tool_support@softwareag.com
+2019-05-21 18:54:03 INFO   Version : _VERSION_
+2019-05-21 18:54:03 INFO   Build   : _BUILD_
+2019-05-21 18:54:03 INFO   Run Mode: INTERACTIVE
+2019-05-21 18:54:03 INFO   -------------------------------------------------------------------------
+2019-05-21 18:54:03 INFO   Exec Directory   [C:/development/isccr/cont-code-review/trunk/FlowCodeChecker/bin/]
+2019-05-21 18:54:03 INFO   Loading Default Configuration Options File
+2019-05-21 18:54:03 INFO   Options File     [*/config.xml]
+2019-05-21 18:54:04 INFO   Custom Options   [*\IsccrTestFq8a\\config\codereview.xml] exists within package - Loading and merging with settings]
+2019-05-21 18:54:04 INFO   Custom Options   [*] provided. Loading and merging with defaults
+2019-05-21 18:54:04 INFO   Code Directory   [*\IsccrTestFq8a\]
+2019-05-21 18:54:04 INFO   Report Directory []
+2019-05-21 18:54:04 INFO   Run Mode         [INTERACTIVE]
+2019-05-21 18:54:04 INFO   webMethods Vers  [10.4]
+2019-05-21 18:54:04 INFO   ------------------------ LICENCE DETAILS ------------------------
+2019-05-21 18:54:04 INFO   Using License file : **************************
+2019-05-21 18:54:04 INFO   Licensed to        : **************************
+2019-05-21 18:54:04 INFO   Serial Number:     : **************************
+2019-05-21 18:54:04 INFO   License Comments   : **************************
+2019-05-21 18:54:04 INFO   Licence Checked and is valid
+2019-05-21 18:54:04 INFO   Package Name     [IsccrTestFq8a]
+2019-05-21 18:54:04 INFO   EXECUTING OPERATIONS
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [SP1]
+2019-05-21 18:54:04 INFO   Rule Index     [1]
+2019-05-21 18:54:04 INFO   Name           [Stateless]
+2019-05-21 18:54:04 INFO   Description    [Services should be stateless to avoid creating session state where not needed. Each session
+consumes resources on the IS, consumes memory, creates a database entry, and in a clustered environment needs
+to be synchronized between cluster nodes. To minimize the build-up of unnecessary sessions it is recommended to ensure stateless services are used where possible.  This can be changed on the 'stateless' flow property within Designer by setting the value to yes.
+The table below highlights all services in the package which are currently configured as stateless]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.ServiceProperties]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [SP2]
+2019-05-21 18:54:04 INFO   Rule Index     [2]
+2019-05-21 18:54:04 INFO   Name           [Pipeline Save Restore]
+2019-05-21 18:54:04 INFO   Description    [No Save/Restore Pipeline options should be set against the service.  The Save/Restore pipeline options where set can result in unnecessary I/O and therefore gives a reduced service performance as these services need to read or write to the disk and concurrent service execution could be compromised.  It is recommended to remote these options from the services before deployment to a non-development environment, or use the extended property (watt.server.pipeline.processor) to disable these in the non-development environments.  Where this is the case, this rule can be ignored]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.ServiceProperties]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ1]
+2019-05-21 18:54:04 INFO   Rule Index     [3]
+2019-05-21 18:54:04 INFO   Name           [Pipeline Services]
+2019-05-21 18:54:04 INFO   Description    [No Save/Restore/Trace Pipieline services should exist within the flow service.  Save/Restore pipeline services result in unnecessary I/O and therefore gives a reduced service performance as these services need to read or write to the disk and concurrent service execution could be compromised.  It is recommended to delete these from the services before deployment to a non-development environment to ensure maximum performance.  Alternative to this is to use the pipeline service options from within designer and disable these in the non-development environments as described in the previous check.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.ServiceUsageChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ2]
+2019-05-21 18:54:04 INFO   Rule Index     [4]
+2019-05-21 18:54:04 INFO   Name           [Clear Pipeline]
+2019-05-21 18:54:04 INFO   Description    [The ClearPipeline service should not be used as pipeline variables should be dropped immediately as soon as they are no longer required.  ClearPipeline leads to unnecessary overhead at the pipeline is walked to determine whether to preserve or drop variables, and can have significant impact on performance when a large pipeline is present.  It is recommended to delete these services from the flow and drop variables once they are no longer needed.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.ServiceUsageChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ3]
+2019-05-21 18:54:04 INFO   Rule Index     [5]
+2019-05-21 18:54:04 INFO   Name           [Deprecated Services]
+2019-05-21 18:54:04 INFO   Description    [Use of deprecated services is not recommended as these will be dropped from the product in a future release.  Please refer to the built-in-services-guide for replacements to any deprecated services discovered to be in use and modify the flow to remove the deprecated service and update with the recommended alternative.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.ServiceUsageChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ4]
+2019-05-21 18:54:04 INFO   Rule Index     [6]
+2019-05-21 18:54:04 INFO   Name           [Disabled Services]
+2019-05-21 18:54:04 INFO   Description    [services should be removed to avoid performance issues as the flow is interpreted during execution.  This also results in smaller, more maintainable flow services which result in a better understanding and lower cost of maintenance.  Recommendation is to delete rather than disable any code no longer needed.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ5]
+2019-05-21 18:54:04 INFO   Rule Index     [7]
+2019-05-21 18:54:04 INFO   Name           [Use of Pub.Storage]
+2019-05-21 18:54:04 INFO   Description    [pub.storage services should not be used due to performance issues.  The pub.storage services have an implicit locking model and are not intended to be a high performance all-purpose database.  Where pub.storage services have been used, it is recommended to re-architect these, particularly in high-throughput scenarios.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.ServiceUsageChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ6]
+2019-05-21 18:54:04 INFO   Rule Index     [8]
+2019-05-21 18:54:04 INFO   Name           [Debug Log]
+2019-05-21 18:54:04 INFO   Description    [Debug Log services should be removed to avoid performance issues during execution.  Where logging is required, the recommendation is to implement a more general purpose and configurable logging framework to help keep you logs more manageable and separate from product logging]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.ServiceUsageChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ7]
+2019-05-21 18:54:04 INFO   Rule Index     [9]
+2019-05-21 18:54:04 INFO   Name           [Public Services Try/Catch]
+2019-05-21 18:54:04 INFO   Description    [Public services must have a try catch within them to ensure graceful handling of error conditions when these occur.  Public services (or top level services) need to decide how to retry or return the error condition to the consuming application.  Recommendation is to use Sequence nodes to wrap the execution of the public service within a try/catch block and use the catch to handle the error condition.  Try/catch can be achieved with sequence nodes by having a top level sequence with the exit on value set to &quot;SUCCESS&quot; and 2 inner sequences, the try, with the exit on value set to &quot;FAILURE&quot; and the catch, with the exit on value set to &quot;DONE&quot;.  It is also recommended to add comments to these sequences to aid understanding so that a developer can identify these are for try/catch usage. ]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FilteredFlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ8]
+2019-05-21 18:54:04 INFO   Rule Index     [10]
+2019-05-21 18:54:04 INFO   Name           [Connections Package]
+2019-05-21 18:54:04 INFO   Description    [All JDBC Adapter connections should be in separate packages, that is a package should not contain connections mixed in with other assets.  This aids deployment of services as this means changes to packages can be deployed without unnecessarily affecting the JDBC Adapter database connections.  Recommendation is to have adapter connections in packages on their own, and not mix these types.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.ConnectionsChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ9]
+2019-05-21 18:54:04 INFO   Rule Index     [11]
+2019-05-21 18:54:04 INFO   Name           [FTP Timeout]
+2019-05-21 18:54:04 INFO   Description    [Ensure timeout is specified on FTP services.  If no timeout is specified on FTP services, the default timeout value is unlimited, meaning there is a possibility of consuming threads on the Integration Server for a long period of time, especially in the scenario where the FTP server isn't available.  Recommendation is to add a timeout value to the invocation where these services are used.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ10]
+2019-05-21 18:54:04 INFO   Rule Index     [12]
+2019-05-21 18:54:04 INFO   Name           [Service invoke comments]
+2019-05-21 18:54:04 INFO   Description    [Comments should be provided for each service that is invoked from the main service.  This helps to improve code readability and maintainability to help reduce cost of change.  Every service invoke should have a comment value set.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [true]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ11]
+2019-05-21 18:54:04 INFO   Rule Index     [13]
+2019-05-21 18:54:04 INFO   Name           [Sequence comments]
+2019-05-21 18:54:04 INFO   Description    [Comments should be provided for each sequence node that is used.  This helps to improve code readability and maintainability to help reduce cost of change.  Every sequence node should have a comment value set.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [true]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ12]
+2019-05-21 18:54:04 INFO   Rule Index     [14]
+2019-05-21 18:54:04 INFO   Name           [Unauthorised Access/Orphaned]
+2019-05-21 18:54:04 INFO   Description    [All services within this package should be invoked through a public service.  This rule Identifies any assets within the package that are not used directly or indirectly from a public flow service or DSP file contained within this package, and therefore are either not used, or are called from outside the package breaking the public/private access principle.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.OrphanedChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [true]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ13]
+2019-05-21 18:54:04 INFO   Rule Index     [15]
+2019-05-21 18:54:04 INFO   Name           [Branch without switch or evaluate labels]
+2019-05-21 18:54:04 INFO   Description    [The BRANCH step selects and executes a child step based on the value of one or more variables in the pipeline. You indicate the variables you want to branch on by specifying a switch value or by writing an expression that includes the variables, therefore a branch must have either a switch value or have evaluate labels set to true.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ14]
+2019-05-21 18:54:04 INFO   Rule Index     [16]
+2019-05-21 18:54:04 INFO   Name           [Branch on expression when child step is without specified label or $null]
+2019-05-21 18:54:04 INFO   Description    [If you branch on expressions (Evaluate labels is set to True), you cannot branch on null or empty values. When executing the BRANCH step and evaluating labels, Integration Server ignores target steps with a blank or set to $null label.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ15]
+2019-05-21 18:54:04 INFO   Rule Index     [17]
+2019-05-21 18:54:04 INFO   Name           [Exit Node From Specification]
+2019-05-21 18:54:04 INFO   Description    [The EXIT step exits the entire flow service or a single flow step. Specifically, it may exit from the nearest ancestor loop step, a specified ancestor step, the parent step, or the entire flow service.  An exit 'From' value is required to determine where to exit from]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ16]
+2019-05-21 18:54:04 INFO   Rule Index     [18]
+2019-05-21 18:54:04 INFO   Name           [Branch step must have child nodes]
+2019-05-21 18:54:04 INFO   Description    [A Branch step in a flow service must have a child node for it to be relevant.  If a branch step has no child nodes it should be deleted]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ17]
+2019-05-21 18:54:04 INFO   Rule Index     [19]
+2019-05-21 18:54:04 INFO   Name           [Loop step must have child nodes]
+2019-05-21 18:54:04 INFO   Description    [A Loop step in a flow service must have a child node for it to be relevant.  If a loop step has no child nodes it should be deleted]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ18]
+2019-05-21 18:54:04 INFO   Rule Index     [20]
+2019-05-21 18:54:04 INFO   Name           [Repeat step must have child nodes]
+2019-05-21 18:54:04 INFO   Description    [A Repeat step in a flow service must have a child node for it to be relevant.  If a repeat step has no child nodes it should be deleted]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ19]
+2019-05-21 18:54:04 INFO   Rule Index     [21]
+2019-05-21 18:54:04 INFO   Name           [Sequence step must have child nodes]
+2019-05-21 18:54:04 INFO   Description    [A Sequence step in a flow service must have a child node for it to be relevant.  If a sequence step has no child nodes it should be deleted]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ20]
+2019-05-21 18:54:04 INFO   Rule Index     [22]
+2019-05-21 18:54:04 INFO   Name           [Map steps must have mapped fields]
+2019-05-21 18:54:04 INFO   Description    [A Map step in a flow service must have mapped fields.  If a map step has no mapped fields it should be deleted]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ21]
+2019-05-21 18:54:04 INFO   Rule Index     [23]
+2019-05-21 18:54:04 INFO   Name           [Loop must have an input array provided]
+2019-05-21 18:54:04 INFO   Description    [A loop step must have an input array variable provided]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ22]
+2019-05-21 18:54:04 INFO   Rule Index     [24]
+2019-05-21 18:54:04 INFO   Name           [Flow service should not be empty]
+2019-05-21 18:54:04 INFO   Description    [A flow service should contain implementation, otherwise it should be removed from the package]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ23]
+2019-05-21 18:54:04 INFO   Rule Index     [25]
+2019-05-21 18:54:04 INFO   Name           [Try step must have child nodes]
+2019-05-21 18:54:04 INFO   Description    [A try step in a flow service must have a child node for it to be relevant.  If a try step has no child nodes it should be deleted]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ24]
+2019-05-21 18:54:04 INFO   Rule Index     [26]
+2019-05-21 18:54:04 INFO   Name           [Catch step must have child nodes]
+2019-05-21 18:54:04 INFO   Description    [A catch step in a flow service must have a child node for it to be relevant.  If a catch step has no child nodes it should be deleted]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [FQ25]
+2019-05-21 18:54:04 INFO   Rule Index     [27]
+2019-05-21 18:54:04 INFO   Name           [Finally step must have child nodes]
+2019-05-21 18:54:04 INFO   Description    [A finally step in a flow service must have a child node for it to be relevant.  If a finally step has no child nodes it should be deleted]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowXMLXpathChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS1]
+2019-05-21 18:54:04 INFO   Rule Index     [28]
+2019-05-21 18:54:04 INFO   Name           [Root Folder Name]
+2019-05-21 18:54:04 INFO   Description    [Root Folder should not be the same as the package as this can cause namespace issues should the code need to be refactored or moved to other packages for promotion to common services, inhibiting reusability.  Recommendation is to set a separate prefix folder structure from the package and use this across all packages differentiating below the prefix.  This can be one or two levels deep (but ideally should be no more) and commonly is the inverse domain name of the organisation, e.g. &quot;com.softwareag&quot;]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS2]
+2019-05-21 18:54:04 INFO   Rule Index     [29]
+2019-05-21 18:54:04 INFO   Name           [Folder Name]
+2019-05-21 18:54:04 INFO   Description    [Folders should only contain lower case ascii characters and digits.  In certain scenarios, use of the underscore character '_' is allowed but should be avoided where possible.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS3]
+2019-05-21 18:54:04 INFO   Rule Index     [30]
+2019-05-21 18:54:04 INFO   Name           [Folder Prefix]
+2019-05-21 18:54:04 INFO   Description    [Ensure that all assets exist within the specified prefix folders.  Recommendation is to set a separate prefix folder structure from the package and use this across all packages differentiating below the prefix.  This can be one or two levels deep (but ideally should be no more) and commonly is the inverse domain name of the organisation, e.g. &quot;com.softwareag&quot;.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS4]
+2019-05-21 18:54:04 INFO   Rule Index     [31]
+2019-05-21 18:54:04 INFO   Name           [Package Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure the package prefix has been specified and package name conforms to standards.  &lt;br/&gt;1. The package name should not end with the word &quot;Package&quot; or &quot;Pkg&quot;.  &lt;br/&gt;2. Package names must not be prefixed with &quot;Wm&quot;. These usually represent packages distributed by webMethods. &lt;br/&gt;3. Packages should start with an uppercase character and only contain alpha numeric character plus the underscore when absolutely required.. &lt;br/&gt;4. Package Name should start with your provided prefix.  A package prefix aids identification of packages created by the organisation.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS5]
+2019-05-21 18:54:04 INFO   Rule Index     [32]
+2019-05-21 18:54:04 INFO   Name           [Service Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure Services (Flow, Map Service, OData and Java) conform to naming standards, that is, a service must start with a lower case letter, should be camel case, and contain only alpha numeric characters (with the exception of the generated REST services)]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS6]
+2019-05-21 18:54:04 INFO   Rule Index     [33]
+2019-05-21 18:54:04 INFO   Name           [Document Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure Document definition names conform to naming standards.  A document name must start with an upper case letter, should be camel case, and contain only alpha numeric characters and the underscore character when absolutely necessary. Documents generated from XSDs may be named docTypeRef_* and these are catered for in this check.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS7]
+2019-05-21 18:54:04 INFO   Rule Index     [34]
+2019-05-21 18:54:04 INFO   Name           [Schema Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure Schemas definitions conform to naming standards.  A schema must start with an upper case letter, should be camel case, and contain only alpha numeric characters and the underscore character when absolutely necessary.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS8]
+2019-05-21 18:54:04 INFO   Rule Index     [35]
+2019-05-21 18:54:04 INFO   Name           [FlatFile Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure Flat File Dictionaries and Schema definitions conform to naming standards.  They must start with an upper case letter, should be camel case, and contain only alpha numeric characters and the underscore character when absolutely necessary.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS9]
+2019-05-21 18:54:04 INFO   Rule Index     [36]
+2019-05-21 18:54:04 INFO   Name           [Blaze Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure Blaze Rules Conform to the Naming Standards.   Blaze rule service names must only contain alpha numeric characters and the underscore when absolutely necessary.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS10]
+2019-05-21 18:54:04 INFO   Rule Index     [37]
+2019-05-21 18:54:04 INFO   Name           [XSL Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure XSL Services Conform to the Naming Standards.  XSL service names must start with a lower case letter, should be camel case, and contain only alpha numeric characters]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS11]
+2019-05-21 18:54:04 INFO   Rule Index     [38]
+2019-05-21 18:54:04 INFO   Name           [Adapter Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure Adapter Services Conform to the Naming Standards.  Adapter service names must start with a lower case letter, should be camel case, and contain only alpha numeric characters]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS12]
+2019-05-21 18:54:04 INFO   Rule Index     [39]
+2019-05-21 18:54:04 INFO   Name           [Trigger Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure Triggers Conform to the Naming Standards.  Trigger names must start with a lower case letter, should be camel case, and contain only alpha numeric characters]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS13]
+2019-05-21 18:54:04 INFO   Rule Index     [40]
+2019-05-21 18:54:04 INFO   Name           [WSD Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure WSDs Conform to the Naming Standards.  WSD names must start with a lower case letter, should be camel case, and contain only alpha numeric characters and the underscore character where absolutely necessary]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS14]
+2019-05-21 18:54:04 INFO   Rule Index     [41]
+2019-05-21 18:54:04 INFO   Name           [Connection Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure Connections Conform to the Naming Standards.  Connection names must start with an upper case letter, should be camel case, and contain only alpha numeric characters and the underscore character where absolutely necessary]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS15]
+2019-05-21 18:54:04 INFO   Rule Index     [42]
+2019-05-21 18:54:04 INFO   Name           [Document variable name]
+2019-05-21 18:54:04 INFO   Description    [Ensure variable names within document defintions conform to the naming standards.  Variable names in document definitions must start with a lower case letter, should be camel case, and contain only alpha numeric characters.  Caters for documents generated from XSDs where the document name may contain namespace prefix and use of underscore and hyphen present]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.DocumentChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS16]
+2019-05-21 18:54:04 INFO   Rule Index     [43]
+2019-05-21 18:54:04 INFO   Name           [Service Signature Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure Input/Output variables in service signatures conform to the naming standards.  Variable names in service signatures must start with a lower case letter, should be camel case, and contain only alpha numeric characters]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.FlowSignatureChecker]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS17]
+2019-05-21 18:54:04 INFO   Rule Index     [44]
+2019-05-21 18:54:04 INFO   Name           [REST Resource Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure REST Resouces Conform to the Naming Standards.  REST resource names must start with a lower case letter, should be camel case, and contain only alpha numeric characters and the underscore character where absolutely necessary]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [NS18]
+2019-05-21 18:54:04 INFO   Rule Index     [45]
+2019-05-21 18:54:04 INFO   Name           [REST Descriptor Name]
+2019-05-21 18:54:04 INFO   Description    [Ensure REST Descriptors conform to the Naming Standards.  REST descriptor names must start with a lower case letter, should be camel case, and contain only alpha numeric characters and the underscore character where absolutely necessary]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Rule Id        [MS1]
+2019-05-21 18:54:04 INFO   Rule Index     [46]
+2019-05-21 18:54:04 INFO   Name           [Non-Production Service Package Suffixes]
+2019-05-21 18:54:04 INFO   Description    [Ensure packages with specified suffixes are not deployed to production.  This is to ensure that test packages (*_TEST), stub packages (*_STUB)  and development packages (*_DEV) are not deployed incorrectly into production class environments.]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.operations.NamingStandards]
+2019-05-21 18:54:04 INFO   Ignore Failure [false]
+2019-05-21 18:54:04 INFO   OPERATIONS EXECUTION COMPLETE (in 233ms)
+2019-05-21 18:54:04 INFO   EXECUTING [PACKAGE SCOPED] SENSORS
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Sensor Id      [1]
+2019-05-21 18:54:04 INFO   Name           [totals]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.sensors.TotalsSensor]
+2019-05-21 18:54:04 INFO   Scope          [package]
+2019-05-21 18:54:04 INFO   Decorator Name [FlowTotals]
+2019-05-21 18:54:04 INFO   Decorator Impl [com.softwareag.gcs.wm.codereview.decorators.SummaryTotals]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Sensor Id      [2]
+2019-05-21 18:54:04 INFO   Name           [CodeLines]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.sensors.CodeLines]
+2019-05-21 18:54:04 INFO   Scope          [package]
+2019-05-21 18:54:04 INFO   Decorator Name [FlowComplexity]
+2019-05-21 18:54:04 INFO   Decorator Impl [com.softwareag.gcs.wm.codereview.decorators.FlowComplexity]
+2019-05-21 18:54:04 INFO   Decorator Name [FlowTotals]
+2019-05-21 18:54:04 INFO   Decorator Impl [com.softwareag.gcs.wm.codereview.decorators.FlowTotals]
+2019-05-21 18:54:04 INFO   EXECUTING OUTPUT RENDERERS
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Name           [CodeReviewResultsXml]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.renderers.XMLRenderer]
+2019-05-21 18:54:04 INFO   Scope          [all]
+2019-05-21 18:54:04 INFO   Creating XML file [C:\development\isccr\cont-code-review\trunk\FlowCodeChecker\IsccrTestFq8a__CodeReviewReport__CodeReviewResultsXml.xml]
+2019-05-21 18:54:04 INFO   -----------------------------------------------------------
+2019-05-21 18:54:04 INFO   Name           [html-package]
+2019-05-21 18:54:04 INFO   Implementation [com.softwareag.gcs.wm.codereview.renderers.XSLRenderer]
+2019-05-21 18:54:04 INFO   Scope          [single]
+2019-05-21 18:54:05 INFO   Inlining JS File [Chart.js]
+2019-05-21 18:54:05 INFO   Inlining JS File [Chart.js]
+2019-05-21 18:54:05 INFO   Creating HTML file [C:\development\isccr\cont-code-review\trunk\FlowCodeChecker\IsccrTestFq8a__CodeReviewReport__html-package.html]
+2019-05-21 18:54:05 INFO   -----------------------------------------------------------
+2019-05-21 18:54:05 INFO   Name           [junit]
+2019-05-21 18:54:05 INFO   Implementation [com.softwareag.gcs.wm.codereview.renderers.XSLRenderer]
+2019-05-21 18:54:05 INFO   Scope          [all]
+2019-05-21 18:54:05 INFO   Inlining JS File [Chart.js]
+2019-05-21 18:54:05 INFO   Creating HTML file [C:\development\isccr\cont-code-review\trunk\FlowCodeChecker\IsccrTestFq8a__CodeReviewReport__junit.xml]
+2019-05-21 18:54:05 INFO   -----------------------------------------------------------
+2019-05-21 18:54:05 INFO   Name           [csv]
+2019-05-21 18:54:05 INFO   Implementation [com.softwareag.gcs.wm.codereview.renderers.CSVRenderer]
+2019-05-21 18:54:05 INFO   Scope          [all]
+2019-05-21 18:54:05 INFO   Creating CSV file [C:\development\isccr\cont-code-review\trunk\FlowCodeChecker\IsccrTestFq8a__CodeReviewReport__csv.csv]
+2019-05-21 18:54:05 INFO   -------------------------------------------------------------------------
+2019-05-21 18:54:05 INFO   Code review complete
+2019-05-21 18:54:05 INFO   Percentage of Passes   (+) [100]
+2019-05-21 18:54:05 INFO   Percentage of Warnings (-) [0] of allowed [100]
+2019-05-21 18:54:05 INFO   Percentage of Failures (.) [0] of allowed [0]
+2019-05-21 18:54:05 INFO   0%                      25%                      50%                      75%                      100%
+2019-05-21 18:54:05 INFO   |                        |                        |                        |                         |
+2019-05-21 18:54:05 INFO   |++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+2019-05-21 18:54:05 INFO    ^                                                                                                   ^
+2019-05-21 18:54:05 INFO    P                                                                                                   W
+2019-05-21 18:54:05 INFO   CODE REVIEW STATUS - PASSED
+2019-05-21 18:54:05 INFO   ########     ###     ######   ######  ######## ########
+2019-05-21 18:54:05 INFO   ##     ##   ## ##   ##    ## ##    ## ##       ##     ## 
+2019-05-21 18:54:05 INFO   ##     ##  ##   ##  ##       ##       ##       ##     ## 
+2019-05-21 18:54:05 INFO   ########  ##     ##  ######   ######  ######   ##     ## 
+2019-05-21 18:54:05 INFO   ##        #########       ##       ## ##       ##     ## 
+2019-05-21 18:54:05 INFO   ##        ##     ## ##    ## ##    ## ##       ##     ## 
+2019-05-21 18:54:05 INFO   ##        ##     ##  ######   ######  ######## ########  
+2019-05-21 18:54:05 INFO    
+Completed
+</code></pre>
+
+<p>Finally, browse and open the HTML and CSV reports provided in the directory from where the command was executed</p>
+<h2 id="linux-command-line-execution">Linux Command Line Execution</h2>
+<h3 id="single-package-review_1">Single Package review</h3>
+<p>For linux, a shell script exists named</p>
+<p><code>CodeReview.sh</code></p>
+<p>This can be executed using the same parameters as the windows version.  Note that like the windows script, you may need to modify this shell script to update environment variables.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2020-01-15 20:44:17
+-->

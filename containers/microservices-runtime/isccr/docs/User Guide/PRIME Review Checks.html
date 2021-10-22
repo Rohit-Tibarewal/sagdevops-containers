@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>PRIME Review Checks - Integration Server Continuous Code Review</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../index.html">Integration Server Continuous Code Review</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../index.html">Overview</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../About/License.html">License</a>
+</li>
+                                    
+<li >
+    <a href="../About/Release Notes.html">Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Developers <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../Developers/API Documentation.html">API Documentation</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Decorators.html">Adding new Decorators</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Operations.html">Adding New Operations</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Reports.html">Adding New Reports</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Adding New Sensors.html">Adding New Sensors</a>
+</li>
+                                    
+<li >
+    <a href="../Developers/Customising Operations.html">Customising Operations</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="Command Line Options.html">Command Line Options</a>
+</li>
+                                    
+<li >
+    <a href="Configuration Xml.html">config.xml</a>
+</li>
+                                    
+<li >
+    <a href="Continuous Integration (CI) Server.html">Continuous Integration (CI) Server</a>
+</li>
+                                    
+<li >
+    <a href="Eclipse Plugin.html">Eclipse Plugin</a>
+</li>
+                                    
+<li class="active">
+    <a href="PRIME Review Checks.html">PRIME Review Checks</a>
+</li>
+                                    
+<li >
+    <a href="Reports.html">Reports</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="Eclipse Plugin.html">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="Reports.html">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#prime-review-checks">PRIME Review Checks</a></li>
+            <li><a href="#sp1-stateless">SP1 - Stateless</a></li>
+            <li><a href="#sp2-pipeline-saverestore">SP2 - Pipeline Save/Restore</a></li>
+            <li><a href="#fq1-pipeline-services">FQ1 - Pipeline Services</a></li>
+            <li><a href="#fq2-clear-pipeline">FQ2 - Clear Pipeline</a></li>
+            <li><a href="#fq3-deprecated-services">FQ3 - Deprecated Services</a></li>
+            <li><a href="#fq4-disabled-services">FQ4 - Disabled Services</a></li>
+            <li><a href="#fq5-use-of-pubstorage">FQ5 - Use of Pub.Storage</a></li>
+            <li><a href="#fq6-debug-log">FQ6 - Debug Log</a></li>
+            <li><a href="#fq7-public-services-trycatch">FQ7 - Public Services Try/Catch</a></li>
+            <li><a href="#fq8-connections-package">FQ8 - Connections Package</a></li>
+            <li><a href="#fq9-ftp-timeout">FQ9 - FTP Timeout</a></li>
+            <li><a href="#fq10-service-invoke-comments">FQ10 - Service invoke comments</a></li>
+            <li><a href="#fq11-sequence-comments">FQ11 - Sequence comments</a></li>
+            <li><a href="#fq12-unauthorised-accessorphaned">FQ12 - Unauthorised Access/Orphaned</a></li>
+            <li><a href="#fq13-branch-without-switch-or-evaluate-labels">FQ13 - Branch without switch or evaluate labels</a></li>
+            <li><a href="#fq14-branch-on-expression-when-child-step-is-without-specified-lable-or-null">FQ14 - Branch on expression when child step is without specified lable or $null</a></li>
+            <li><a href="#fq15-exit-node-from-specification">FQ15 - Exit Node from Specification</a></li>
+            <li><a href="#fq16-branch-step-must-have-child-nodes">FQ16 - Branch Step must have child nodes</a></li>
+            <li><a href="#fq17-loop-step-must-have-child-nodes">FQ17 - Loop step must have child nodes</a></li>
+            <li><a href="#fq18-repeat-step-must-have-child-nodes">FQ18 - Repeat step must have child nodes</a></li>
+            <li><a href="#fq19-sequence-step-must-have-child-nodes">FQ19 - Sequence step must have child nodes</a></li>
+            <li><a href="#fq20-map-steps-must-have-mapped-fields">FQ20 - Map steps must have mapped fields</a></li>
+            <li><a href="#fq21-loop-must-have-an-input-array-provided">FQ21 - Loop must have an input array provided</a></li>
+            <li><a href="#fq22-flow-service-should-not-be-empty">FQ22 - Flow service should not be empty</a></li>
+            <li><a href="#fq23-try-step-must-have-child-nodes-v103-onwards">FQ23 - Try step must have child nodes (v10.3 onwards)</a></li>
+            <li><a href="#fq24-catch-step-must-have-child-nodes-v103-onwards">FQ24 -  Catch step must have child nodes (v10.3 onwards)</a></li>
+            <li><a href="#fq25-finally-step-must-have-child-nodes-v103-onwards">FQ25 - Finally step must have child nodes (v10.3 onwards)</a></li>
+            <li><a href="#fq99-references-to-assets-should-exist">FQ99 - References to assets should exist</a></li>
+            <li><a href="#ns1-root-folder-name">NS1 - Root folder name</a></li>
+            <li><a href="#ns2-folder-name">NS2 - Folder name</a></li>
+            <li><a href="#ns3-folder-prefix">NS3 - Folder prefix</a></li>
+            <li><a href="#ns4-package-name">NS4 - Package name</a></li>
+            <li><a href="#ns5-service-name">NS5 - Service name</a></li>
+            <li><a href="#ns6-document-name">NS6 - Document name</a></li>
+            <li><a href="#ns7-schema-name">NS7 - Schema name</a></li>
+            <li><a href="#ns8-flatfile-name">NS8 - FlatFile name</a></li>
+            <li><a href="#ns9-blaze-name">NS9 - Blaze name</a></li>
+            <li><a href="#ns10-xsl-name">NS10 - XSL name</a></li>
+            <li><a href="#ns11-adapter-name">NS11 - Adapter name</a></li>
+            <li><a href="#ns12-trigger-name">NS12 - Trigger name</a></li>
+            <li><a href="#ns13-wsd-name">NS13 - WSD name</a></li>
+            <li><a href="#ns14-connection-name">NS14 - Connection name</a></li>
+            <li><a href="#ns15-document-variable-name">NS15 - Document variable name</a></li>
+            <li><a href="#ns16-service-signature-name">NS16 - Service signature name</a></li>
+            <li><a href="#ns17-rest-resource-name">NS17 - REST Resource name</a></li>
+            <li><a href="#ns18-rest-descriptor-name">NS18 - REST Descriptor name</a></li>
+            <li><a href="#ms1-non-production-service-package-suffixes">MS1 - Non-production service package suffixes</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="prime-review-checks">PRIME Review Checks</h1>
+<h2 id="sp1-stateless">SP1 - Stateless</h2>
+<p>Services should be stateless to avoid creating session state where not needed. Each session consumes resources on the IS, consumes memory, creates a database entry, and in a clustered environment needs to be synchronized between cluster nodes. To minimize the build-up of unnecessary sessions it is recommended to ensure stateless services are used where possible.  This can be changed on the 'stateless' flow property within Designer by setting the value to yes.</p>
+<h2 id="sp2-pipeline-saverestore">SP2 - Pipeline Save/Restore</h2>
+<p>No Save/Restore Pipeline options should be set against the service.  The Save/Restore pipeline options where set can result in unnecessary I/O and therefore gives a reduced service performance as these services need to read or write to the disk and concurrent service execution could be compromised.  It is recommended to remote these options from the services before deployment to a non-development environment, or use the extended property (watt.server.pipeline.processor) to disable these in the non-development environments.  Where this is the case, this rule can be ignored</p>
+<h2 id="fq1-pipeline-services">FQ1 - Pipeline Services</h2>
+<p>No Save/Restore/Trace Pipeline services should exist within the flow service, including: </p>
+<ul>
+<li>pub.flow:restorePipeline</li>
+<li>pub.flow:restorePipelineFromFile</li>
+<li>pub.flow:savePipeline</li>
+<li>pub.flow:savePipelineFromFile</li>
+<li>pub.flow:tracePipeline</li>
+</ul>
+<p>Save/Restore pipeline services result in unnecessary I/O and therefore gives a reduced service performance as these services need to read or write to the disk and concurrent service execution could be compromised.  It is recommended to delete these from the services before deployment to a non-development environment to ensure maximum performance.  Alternative to this is to use the pipeline service options from within designer and disable these in the non-development environments as described in the previous check.</p>
+<h2 id="fq2-clear-pipeline">FQ2 - Clear Pipeline</h2>
+<p>The ClearPipeline service should not be used as pipeline variables should be dropped immediately as soon as they are no longer required.  ClearPipeline leads to unnecessary overhead at the pipeline is walked to determine whether to preserve or drop variables, and can have significant impact on performance when a large pipeline is present.  It is recommended to delete these services from the flow and drop variables once they are no longer needed.</p>
+<h2 id="fq3-deprecated-services">FQ3 - Deprecated Services</h2>
+<p>Use of deprecated services is not recommended as these will be dropped from the product in a future release.  Please refer to the built-in-services-guide for replacements to any deprecated services discovered to be in use and modify the flow to remove the deprecated service and update with the recommended alternative.</p>
+<h2 id="fq4-disabled-services">FQ4 - Disabled Services</h2>
+<p>services should be removed to avoid performance issues as the flow is interpreted during execution.  This also results in smaller, more maintainable flow services which result in a better understanding and lower cost of maintenance.  Recommendation is to delete rather than disable any code no longer needed.</p>
+<h2 id="fq5-use-of-pubstorage">FQ5 - Use of Pub.Storage</h2>
+<p>pub.storage services should not be used due to performance issues.  The pub.storage services have an implicit locking model and are not intended to be a high performance all-purpose database.  Where pub.storage services have been used, it is recommended to re-architect these, particularly in high-throughput scenarios.</p>
+<h2 id="fq6-debug-log">FQ6 - Debug Log</h2>
+<p>Debug Log services should be removed to avoid performance issues during execution.  Where logging is required, the recommendation is to implement a more general purpose and configurable logging framework to help keep you logs more manageable and separate from product logging</p>
+<h2 id="fq7-public-services-trycatch">FQ7 - Public Services Try/Catch</h2>
+<p>Public services must have a try catch within them to ensure graceful handling of error conditions when these occur.  Public services (or top level services) need to decide how to retry or return the error condition to the consuming application.  Recommendation is to use Sequence nodes to wrap the execution of the public service within a try/catch block and use the catch to handle the error condition.  </p>
+<p>Try/catch can be achieved with sequence nodes by having a top level sequence with the exit on value set to "SUCCESS" and 2 inner sequences, the try, with the exit on value set to "FAILURE" and the catch, with the exit on value set to "DONE".  It is also recommended to add comments to these sequences to aid understanding so that a developer can identify these are for try/catch usage.`</p>
+<h2 id="fq8-connections-package">FQ8 - Connections Package</h2>
+<p>All JDBC Adapter connections should be in separate packages, that is a package should not contain connections mixed in with other assets.  This aids deployment of services as this means changes to packages can be deployed without unnecessarily affecting the JDBC Adapter database connections.  Recommendation is to have adapter connections in packages on their own, and not mix these types.</p>
+<h2 id="fq9-ftp-timeout">FQ9 - FTP Timeout</h2>
+<p>Ensure timeout is specified on FTP services.  If no timeout is specified on FTP services, the default timeout value is unlimited, meaning there is a possibility of consuming threads on the Integration Server for a long period of time, especially in the scenario where the FTP server isn't available.  Recommendation is to add a timeout value to the invocation where these services are used.</p>
+<h2 id="fq10-service-invoke-comments">FQ10 - Service invoke comments</h2>
+<p>Comments should be provided for each service that is invoked from the main service.  This helps to improve code readability and maintainability to help reduce cost of change.  Every service invoke should have a comment value set.</p>
+<h2 id="fq11-sequence-comments">FQ11 - Sequence comments</h2>
+<p>Comments should be provided for each sequence node that is used.  This helps to improve code readability and maintainability to help reduce cost of change.  Every sequence node should have a comment value set.</p>
+<h2 id="fq12-unauthorised-accessorphaned">FQ12 - Unauthorised Access/Orphaned</h2>
+<p>All services within this package should be invoked through a public service.  This rule Identifies any assets within the package that are not used directly or indirectly from a public flow service or DSP file contained within this package, and therefore are either not used, or are called from outside the package breaking the public/private access principle.</p>
+<h2 id="fq13-branch-without-switch-or-evaluate-labels">FQ13 - Branch without switch or evaluate labels</h2>
+<p>The BRANCH step selects and executes a child step based on the value of one or more variables in the pipeline. You indicate the variables you want to branch on by specifying a switch value or by writing an expression that includes the variables, therefore a branch must have either a switch value or have evaluate labels set to true.</p>
+<h2 id="fq14-branch-on-expression-when-child-step-is-without-specified-lable-or-null">FQ14 - Branch on expression when child step is without specified lable or $null</h2>
+<p>If you branch on expressions (Evaluate labels is set to True), you cannot branch on null or empty values. When executing the BRANCH step and evaluating labels, Integration Server ignores target steps with a blank or set to $null label.</p>
+<h2 id="fq15-exit-node-from-specification">FQ15 - Exit Node from Specification</h2>
+<p>The EXIT step exits the entire flow service or a single flow step. Specifically, it may exit from the nearest ancestor loop step, a specified ancestor step, the parent step, or the entire flow service.  An exit 'From' value is required to determine where to exit from</p>
+<h2 id="fq16-branch-step-must-have-child-nodes">FQ16 - Branch Step must have child nodes</h2>
+<p>A Branch step in a flow service must have a child node for it to be relevant.  If a branch step has no child nodes it should be deleted</p>
+<h2 id="fq17-loop-step-must-have-child-nodes">FQ17 - Loop step must have child nodes</h2>
+<p>A Loop step in a flow service must have a child node for it to be relevant.  If a loop step has no child nodes it should be deleted</p>
+<h2 id="fq18-repeat-step-must-have-child-nodes">FQ18 - Repeat step must have child nodes</h2>
+<p>A Repeat step in a flow service must have a child node for it to be relevant.  If a repeat step has no child nodes it should be deleted</p>
+<h2 id="fq19-sequence-step-must-have-child-nodes">FQ19 - Sequence step must have child nodes</h2>
+<p>A Sequence step in a flow service must have a child node for it to be relevant.  If a sequence step has no child nodes it should be deleted</p>
+<h2 id="fq20-map-steps-must-have-mapped-fields">FQ20 - Map steps must have mapped fields</h2>
+<p>A Map step in a flow service must have mapped fields.  If a map step has no mapped fields it should be deleted</p>
+<h2 id="fq21-loop-must-have-an-input-array-provided">FQ21 - Loop must have an input array provided</h2>
+<p>A loop step must have an input array variable provided</p>
+<h2 id="fq22-flow-service-should-not-be-empty">FQ22 - Flow service should not be empty</h2>
+<p>A flow service should contain implementation, otherwise it should be removed from the package</p>
+<h2 id="fq23-try-step-must-have-child-nodes-v103-onwards">FQ23 - Try step must have child nodes <em>(v10.3 onwards)</em></h2>
+<p>A try step in a flow service must have a child node for it to be relevant.  If a try step has no child nodes it should be deleted</p>
+<h2 id="fq24-catch-step-must-have-child-nodes-v103-onwards">FQ24 -  Catch step must have child nodes <em>(v10.3 onwards)</em></h2>
+<p>A catch step in a flow service must have a child node for it to be relevant.  If a catch step has no child nodes it should be deleted</p>
+<h2 id="fq25-finally-step-must-have-child-nodes-v103-onwards">FQ25 - Finally step must have child nodes <em>(v10.3 onwards)</em></h2>
+<p>A finally step in a flow service must have a child node for it to be relevant.  If a finally step has no child nodes it should be deleted</p>
+<h2 id="fq99-references-to-assets-should-exist">FQ99 - References to assets should exist</h2>
+<p>References to other assets (such as Invocations to flow services and document references) should exist</p>
+<h2 id="ns1-root-folder-name">NS1 - Root folder name</h2>
+<p>Root Folder should not be the same as the package as this can cause namespace issues should the code need to be refactored or moved to other packages for promotion to common services, inhibiting reusability.  Recommendation is to set a separate prefix folder structure from the package and use this across all packages differentiating below the prefix.  This can be one or two levels deep (but ideally should be no more) and commonly is the inverse domain name of the organisation, e.g. "com.softwareag"</p>
+<h2 id="ns2-folder-name">NS2 - Folder name</h2>
+<p>Folders should only contain lower case ascii characters and digits.  In certain scenarios, use of the underscore character '_' is allowed but should be avoided where possible.</p>
+<h2 id="ns3-folder-prefix">NS3 - Folder prefix</h2>
+<p>Ensure that all assets exist within the specified prefix folders.  Recommendation is to set a separate prefix folder structure from the package and use this across all packages differentiating below the prefix.  This can be one or two levels deep (but ideally should be no more) and commonly is the inverse domain name of the organisation, e.g. "com.softwareag".</p>
+<h2 id="ns4-package-name">NS4 - Package name</h2>
+<p>Ensure the package prefix has been specified and package name conforms to standards.</p>
+<ul>
+<li>The package name should not end with the word "Package" or "Pkg".</li>
+<li>Package names must not be prefixed with "Wm". These usually represent packages distributed by webMethods.</li>
+<li>Packages should start with an uppercase character and only contain alpha numeric character plus the underscore when absolutely required.</li>
+<li>Package Name should start with your provided prefix.  A package prefix aids identification of packages created by the organisation.</li>
+</ul>
+<h2 id="ns5-service-name">NS5 - Service name</h2>
+<p>Ensure Services (Flow, Map Service, OData and Java) conform to naming standards, that is, a service must start with a lower case letter, should be camel case, and contain only alpha numeric characters (with the exception of the generated REST services)</p>
+<h2 id="ns6-document-name">NS6 - Document name</h2>
+<p>Ensure Document definition names conform to naming standards.  A document name must start with an upper case letter, should be camel case, and contain only alpha numeric characters and the underscore character when absolutely necessary. Documents generated from XSDs may be named docTypeRef_* and these are catered for in this check.</p>
+<h2 id="ns7-schema-name">NS7 - Schema name</h2>
+<p>Ensure Schemas definitions conform to naming standards.  A schema must start with an upper case letter, should be camel case, and contain only alpha numeric characters and the underscore character when absolutely necessary.</p>
+<h2 id="ns8-flatfile-name">NS8 - FlatFile name</h2>
+<p>Ensure Flat File Dictionaries and Schema definitions conform to naming standards.  They must start with an upper case letter, should be camel case, and contain only alpha numeric characters and the underscore character when absolutely necessary.</p>
+<h2 id="ns9-blaze-name">NS9 - Blaze name</h2>
+<p>Ensure Blaze Rules Conform to the Naming Standards.   Blaze rule service names must only contain alpha numeric characters and the underscore when absolutely necessary.</p>
+<h2 id="ns10-xsl-name">NS10 - XSL name</h2>
+<p>Ensure XSL Services Conform to the Naming Standards.  XSL service names must start with a lower case letter, should be camel case, and contain only alpha numeric characters</p>
+<h2 id="ns11-adapter-name">NS11 - Adapter name</h2>
+<p>Ensure Adapter Services Conform to the Naming Standards.  Adapter service names must start with a lower case letter, should be camel case, and contain only alpha numeric characters</p>
+<h2 id="ns12-trigger-name">NS12 - Trigger name</h2>
+<p>Ensure Triggers Conform to the Naming Standards.  Trigger names must start with a lower case letter, should be camel case, and contain only alpha numeric characters</p>
+<h2 id="ns13-wsd-name">NS13 - WSD name</h2>
+<p>Ensure WSDs Conform to the Naming Standards.  WSD names must start with a lower case letter, should be camel case, and contain only alpha numeric characters and the underscore character where absolutely necessary</p>
+<h2 id="ns14-connection-name">NS14 - Connection name</h2>
+<p>Ensure Connections Conform to the Naming Standards.  Connection names must start with an upper case letter, should be camel case, and contain only alpha numeric characters and the underscore character where absolutely necessary</p>
+<h2 id="ns15-document-variable-name">NS15 - Document variable name</h2>
+<p>Ensure variable names within document definitions conform to the naming standards.  Variable names in document definitions must start with a lower case letter, should be camel case, and contain only alpha numeric characters.  Caters for documents generated from XSDs where the document name may contain namespace prefix and use of underscore and hyphen present</p>
+<h2 id="ns16-service-signature-name">NS16 - Service signature name</h2>
+<p>Ensure Input/Output variables in service signatures conform to the naming standards.  Variable names in service signatures must start with a lower case letter, should be camel case, and contain only alpha numeric characters</p>
+<h2 id="ns17-rest-resource-name">NS17 - REST Resource name</h2>
+<p>Ensure REST Resources Conform to the Naming Standards.  REST resource names must start with a lower case letter, should be camel case, and contain only alpha numeric characters and the underscore character where absolutely necessary</p>
+<h2 id="ns18-rest-descriptor-name">NS18 - REST Descriptor name</h2>
+<p>Ensure REST Descriptors conform to the Naming Standards.  REST descriptor names must start with a lower case letter, should be camel case, and contain only alpha numeric characters and the underscore character where absolutely necessary</p>
+<h2 id="ms1-non-production-service-package-suffixes">MS1 - Non-production service package suffixes</h2>
+<p>Ensure packages with specified suffixes are not deployed to production.  This is to ensure that test packages (<em>_TEST), stub packages (</em>_STUB)  and development packages (*_DEV) are not deployed incorrectly into production class environments.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
