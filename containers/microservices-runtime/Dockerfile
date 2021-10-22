@@ -7,6 +7,9 @@ RUN mkdir -p /tmp/isccr
 
 COPY isccr/GCS_IS_ContinuousCodeReview_v8.1.0.zip /tmp/isccr/
 
+RUN apt-get update
+RUN apt-get install zip unzip
+
 RUN cd /tmp/isccr && unzip GCS_IS_ContinuousCodeReview_v8.1.0.zip && rm GCS_IS_ContinuousCodeReview_v8.1.0.zip
 
 RUN CodeReview.sh -Dcode.review.directory=/opt/softwareag/IntegrationServer/packages/ -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev
