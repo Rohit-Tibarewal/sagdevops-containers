@@ -26,7 +26,6 @@ pipeline {
         string(name: 'deploymentName', defaultValue: 'msr-demo', description: 'The Deployment name whose container needs to be updated') 
         string(name: 'targetContainerName', defaultValue: 'msr-demo-cn', description: 'The Container, inside given Deployment, whose image needs to be updated') 
 		
-		string(name: 'isccrHomeDir', defaultValue: "${WORKSPACE}/containers/microservices-runtime/isccr", description: 'Directory inside the Container, where ISCCR will be installed') 
 		booleanParam(name: 'ignoreISCCRFailure', defaultValue: false, description: 'Whether to Ignore Code Review Failures')
     }
     environment {
@@ -43,11 +42,10 @@ pipeline {
        TEST_CONTAINER_NAME="${BUILD_TAG}"  
 	   DEPLOYMENT_NAME="${params.deploymentName}"
        CONTAINER_NAME="${params.targetContainerName}"
-	   //ISCCR_HOME_DIR="${WORKSPACE}/containers/microservices-runtime/isccr"
-	   ISCCR_HOME_DIR="${params.isccrHomeDir}"
-	   IGNORE_ISCCR_FAILURE="${params.ignoreISCCRFailure}"
+	   ISCCR_HOME_DIR="${WORKSPACE}/containers/microservices-runtime/isccr"
 	   ISCCR_LICENSE_FILE="${WORKSPACE}/containers/microservices-runtime/licenses/license.txt"
-    }
+	   IGNORE_ISCCR_FAILURE="${params.ignoreISCCRFailure}"
+	}
     
     
     stages {
