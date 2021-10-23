@@ -3,12 +3,6 @@ ARG PRODUCT_IMAGE
 FROM $PRODUCT_IMAGE as default
 COPY --chown=sagadmin assets/Packages /opt/softwareag/IntegrationServer/packages/
 
-ARG ISCCR_HOMEDIR
-COPY --chown=sagadmin isccr $ISCCR_HOMEDIR
-COPY --chown=sagadmin licenses/license.txt $ISCCR_HOMEDIR/.
-
-RUN chmod +x $ISCCR_HOMEDIR/CodeReview.sh 
-
 #EXPOSE 5555
 
 #COPY --chown=sagadmin ./scripts /src/scripts
