@@ -4,10 +4,10 @@ ARG ISCCR_HOMEDIR
 FROM $PRODUCT_IMAGE as default
 COPY --chown=sagadmin assets/Packages /opt/softwareag/IntegrationServer/packages/
 
-COPY --chown=sagadmin isccr /tmp/isccr
-COPY --chown=sagadmin licenses/license.txt /tmp/isccr/.
+COPY --chown=sagadmin isccr $ISCCR_HOMEDIR
+COPY --chown=sagadmin licenses/license.txt $ISCCR_HOMEDIR/.
 
-RUN chmod +x /tmp/isccr/CodeReview.sh 
+RUN chmod +x $ISCCR_HOMEDIR/CodeReview.sh 
 
 #EXPOSE 5555
 
