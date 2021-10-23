@@ -1,14 +1,14 @@
 ARG PRODUCT_IMAGE
+ARG ISCCR_HOMEDIR
 
 FROM $PRODUCT_IMAGE as default
 COPY --chown=sagadmin assets/Packages /opt/softwareag/IntegrationServer/packages/
-RUN ls -la /opt/softwareag/IntegrationServer/packages/
 
-COPY --chown=sagadmin isccr /tmp/isccr
-COPY --chown=sagadmin licenses/license.txt /tmp/isccr/.
+COPY --chown=sagadmin isccr ${ISCCR_HOMEDIR}
+COPY --chown=sagadmin licenses/license.txt ${ISCCR_HOMEDIR}/.
 
-RUN chmod +x /tmp/isccr/CodeReview.sh 
-#RUN /tmp/isccr/CodeReview.sh -Dcode.review.directory=/opt/softwareag/IntegrationServer/packages/ -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev
+RUN chmod +x ${ISCCR_HOMEDIR}/CodeReview.sh 
+
 #EXPOSE 5555
 
 #COPY --chown=sagadmin ./scripts /src/scripts

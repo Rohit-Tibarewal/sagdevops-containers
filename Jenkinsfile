@@ -25,7 +25,9 @@ pipeline {
 		
         string(name: 'deploymentName', defaultValue: 'msr-demo', description: 'The Deployment name whose container needs to be updated') 
         string(name: 'targetContainerName', defaultValue: 'msr-demo-cn', description: 'The Container, inside given Deployment, whose image needs to be updated') 
-
+		
+		string(name: 'isccrHomeDir', defaultValue: '/tmp/isccr', description: 'Directory inside the Container, where ISCCR will be installed') 
+		booleanParam(name: 'ignoreISCCRFailure', defaultValue: false, description: 'Whether to Ignore Code Review Failures')
     }
     environment {
        REG_HOST="${params.sourceContainerRegistryHost}"
@@ -41,6 +43,8 @@ pipeline {
        TEST_CONTAINER_NAME="${BUILD_TAG}"  
 	   DEPLOYMENT_NAME="${params.deploymentName}"
        CONTAINER_NAME="${params.targetContainerName}"
+	   ISCCR_HOME_DIR="${params.isccrHomeDir}"
+	   IGNORE_ISCCR_FAILURE="${params.ignoreISCCRFailure}"
     }
     
     
@@ -72,8 +76,23 @@ pipeline {
 		stage('CodeReview-ISCCR') {
             steps {
                 script {
-                       sh "docker exec -w /tmp/isccr/ ${TEST_CONTAINER_NAME} /tmp/isccr/CodeReview.sh -Dcode.review.directory=/opt/softwareag/IntegrationServer/packages/ -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev"
-                }
+				
+					try{
+					echo "STart ISCCR Revew with flag value as ${IGNORE_ISCCR_FAILURE}"
+                       sh "docker exec -w ${ISCCR_HOME_DIR} ${TEST_CONTAINER_NAME} ${ISCCR_HOME_DIR}/CodeReview.sh -Dcode.review.directory=/opt/softwareag/IntegrationServer/packages/ -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev"
+                        
+                    }
+					catch(error){
+                       if("true".equals(${IGNORE_ISCCR_FAILURE})) { 
+                            echo "Ignore ISCCR Error and Copy ISCCR HTML Report"
+							sh "docker cp ${TEST_CONTAINER_NAME}:${ISCCR_HOME_DIR}/MULTI__CodeReviewReport__html-multi.html ${WORKSPACE}/report/"
+                         } else { 
+                             currentBuild.result = 'FAILURE'
+                             echo "ISCCR ERROR cannot be ignored. Exit with Failure!"
+                             sh "exit 1" 
+                         } 
+                    }
+				}
             }
         }
 
