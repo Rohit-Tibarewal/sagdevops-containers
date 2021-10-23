@@ -78,12 +78,12 @@ pipeline {
                 script {
 				
 					try{
-					echo "STart ISCCR Revew with flag value as ${IGNORE_ISCCR_FAILURE}"
+						echo "Start ISCCR Review with flag value as ${IGNORE_ISCCR_FAILURE}"
                        sh "docker exec -w ${ISCCR_HOME_DIR} ${TEST_CONTAINER_NAME} ${ISCCR_HOME_DIR}/CodeReview.sh -Dcode.review.directory=/opt/softwareag/IntegrationServer/packages/ -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev"
                         
                     }
 					catch(error){
-                       if("true".equals(${IGNORE_ISCCR_FAILURE})) { 
+                       if("true".equals(IGNORE_ISCCR_FAILURE) { 
                             echo "Ignore ISCCR Error and Copy ISCCR HTML Report"
 							sh "docker cp ${TEST_CONTAINER_NAME}:${ISCCR_HOME_DIR}/MULTI__CodeReviewReport__html-multi.html ${WORKSPACE}/report/"
                          } else { 
