@@ -27,7 +27,7 @@ services:
       context: microservices-runtime/
       args:
         - PRODUCT_IMAGE=${REG_HOST:-docker.io}/${REG_ORG:-store/softwareag}/${REPO_NAME:-webmethods-microservicesruntime}:${REPO_TAG:-10.5.0.0}
-        - ISCCR_HOMEDIR=${ISCCR_HOME_DIR:/tmp/isccr}
+        - ISCCR_HOMEDIR=${ISCCR_HOME_DIR:-tmp/isccr}
     volumes:
       - /home/saguser/properties/prod/application.properties:/opt/softwareag/application.properties
       - /home/saguser/licenses/0000497888_MicroservicesRuntime_100.xml:/opt/softwareag/IntegrationServer/config/licenseKey.xml
