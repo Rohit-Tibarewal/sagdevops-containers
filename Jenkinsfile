@@ -53,9 +53,11 @@ pipeline {
             steps {
                 script {
                   dir ('./containers') {
-                        docker.withRegistry("https://${params.sourceContainerRegistryHost}", "${params.sourceContainerRegistryCredentials}"){
-                            sh "docker-compose config"
+                           sh "echo isccrHomeDir as ${params.isccrHomeDir} and isccr install directory as ${ISCCR_HOME_DIR}"
+							docker.withRegistry("https://${params.sourceContainerRegistryHost}", "${params.sourceContainerRegistryCredentials}"){
+							sh "docker-compose config"
                             sh "docker-compose build ${params.buildScenario}"
+							
                         }
                   }
                 }
@@ -78,7 +80,7 @@ pipeline {
                 script {
 				
 					try{
-						echo "Start ISCCR Review with flag value as ${IGNORE_ISCCR_FAILURE}"
+						echo "Start ISCCR Review with flag value as ${IGNORE_ISCCR_FAILURE} and isccr install directory as ${ISCCR_HOME_DIR}"
                        sh "docker exec -w ${ISCCR_HOME_DIR} ${TEST_CONTAINER_NAME} ${ISCCR_HOME_DIR}/CodeReview.sh -Dcode.review.directory=/opt/softwareag/IntegrationServer/packages/ -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev"
                         
                     }
