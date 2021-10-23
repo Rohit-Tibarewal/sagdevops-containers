@@ -95,6 +95,7 @@ pipeline {
 					finally{
 						echo "Copy ISCCR HTML Report"
 						sh "mkdir -p ${WORKSPACE}/report/"
+						sh "cp ${ISCCR_HOME_DIR}/MULTI__CodeReviewReport__html-multi.html ${WORKSPACE}/report/" 
 						echo "ISCCR Report can be found at ${WORKSPACE}/report/MULTI__CodeReviewReport__html-multi.html"
 					}
 				}
