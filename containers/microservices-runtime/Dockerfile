@@ -1,10 +1,10 @@
 ARG PRODUCT_IMAGE
-ARG ISCCR_HOMEDIR
+#ARG ISCCR_HOMEDIR
 
 FROM $PRODUCT_IMAGE as default
 COPY --chown=sagadmin assets/Packages /opt/softwareag/IntegrationServer/packages/
 
-#ARG ISCCR_HOMEDIR
+ARG ISCCR_HOMEDIR
 COPY --chown=sagadmin isccr $ISCCR_HOMEDIR
 COPY --chown=sagadmin licenses/license.txt $ISCCR_HOMEDIR/.
 
