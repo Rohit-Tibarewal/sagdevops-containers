@@ -86,14 +86,17 @@ pipeline {
                     }
 					catch(error){
                        if("true".equals(IGNORE_ISCCR_FAILURE)) { 
-                            echo "Ignore ISCCR Error and Copy ISCCR HTML Report"
-							sh "docker cp ${TEST_CONTAINER_NAME}:${ISCCR_HOME_DIR}/MULTI__CodeReviewReport__html-multi.html ${WORKSPACE}/report/"
+                            echo "Ignore ISCCR Error and Continue..."							
                          } else { 
                              currentBuild.result = 'FAILURE'
                              echo "ISCCR ERROR cannot be ignored. Exit with Failure!"
                              sh "exit 1" 
                          } 
                     }
+					finally{
+						echo "Copy ISCCR HTML Report"
+						sh "docker cp ${TEST_CONTAINER_NAME}:${ISCCR_HOME_DIR}/MULTI__CodeReviewReport__html-multi.html ${WORKSPACE}/report/"                    
+					}
 				}
             }
         }
