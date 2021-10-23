@@ -43,8 +43,9 @@ pipeline {
        TEST_CONTAINER_NAME="${BUILD_TAG}"  
 	   DEPLOYMENT_NAME="${params.deploymentName}"
        CONTAINER_NAME="${params.targetContainerName}"
-	   ISCCR_HOME_DIR="${params.isccrHomeDir}"
+	   ISCCR_HOME_DIR="${WORKSPACE}/containers/microservices-runtime/isccr"
 	   IGNORE_ISCCR_FAILURE="${params.ignoreISCCRFailure}"
+	   ISCCR_LICENSE_FILE="${WORKSPACE}/containers/microservices-runtime/licenses/license.txt"
     }
     
     
@@ -78,7 +79,10 @@ pipeline {
                 script {
 					def isAssetsDir = "${WORKSPACE}/containers/microservices-runtime/assets/Packages"
 					try{
-                       sh "docker exec -w ${ISCCR_HOME_DIR} ${TEST_CONTAINER_NAME} ${ISCCR_HOME_DIR}/CodeReview.sh -Dcode.review.directory=${isAssetsDir} -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev"
+                      // sh "docker exec -w ${ISCCR_HOME_DIR} ${TEST_CONTAINER_NAME} ${ISCCR_HOME_DIR}/CodeReview.sh -Dcode.review.directory=${isAssetsDir} -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev"
+                       sh "cp ${ISCCR_LICENSE_FILE} ${ISCCR_HOME_DIR}/."
+					   sh "chmod +x ${ISCCR_HOME_DIR}/CodeReview.sh "
+					   sh "${ISCCR_HOME_DIR}/CodeReview.sh -Dcode.review.directory=${isAssetsDir} -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev"
                         
                     }
 					catch(error){
