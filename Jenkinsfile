@@ -26,7 +26,7 @@ pipeline {
         string(name: 'deploymentName', defaultValue: 'msr-demo', description: 'The Deployment name whose container needs to be updated') 
         string(name: 'targetContainerName', defaultValue: 'msr-demo-cn', description: 'The Container, inside given Deployment, whose image needs to be updated') 
 		
-		string(name: 'isccrHomeDir', defaultValue: '/tmp/isccr', description: 'Directory inside the Container, where ISCCR will be installed') 
+		string(name: 'isccrHomeDir', defaultValue: "/tmp/isccr", description: 'Directory inside the Container, where ISCCR will be installed') 
 		booleanParam(name: 'ignoreISCCRFailure', defaultValue: false, description: 'Whether to Ignore Code Review Failures')
     }
     environment {
@@ -83,7 +83,7 @@ pipeline {
                         
                     }
 					catch(error){
-                       if("true".equals(IGNORE_ISCCR_FAILURE) { 
+                       if("true".equals(IGNORE_ISCCR_FAILURE)) { 
                             echo "Ignore ISCCR Error and Copy ISCCR HTML Report"
 							sh "docker cp ${TEST_CONTAINER_NAME}:${ISCCR_HOME_DIR}/MULTI__CodeReviewReport__html-multi.html ${WORKSPACE}/report/"
                          } else { 
