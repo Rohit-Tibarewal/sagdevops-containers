@@ -68,6 +68,16 @@ pipeline {
                 }
             }
         }
+		
+		stage('CodeReview-ISCCR') {
+            steps {
+                script {
+                       sh "docker exec -w /tmp/isccr/ ${CONTAINER_NAME} /tmp/isccr/CodeReview.sh -Dcode.review.directory=/opt/softwareag/IntegrationServer/packages/ -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev"
+                }
+            }
+        }
+
+		
         stage('Test') {
             when {
                 expression {
