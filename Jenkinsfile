@@ -53,11 +53,9 @@ pipeline {
             steps {
                 script {
                   dir ('./containers') {
-                           sh "echo isccrHomeDir as ${params.isccrHomeDir} and isccr install directory as ${ISCCR_HOME_DIR}"
-							docker.withRegistry("https://${params.sourceContainerRegistryHost}", "${params.sourceContainerRegistryCredentials}"){
+						docker.withRegistry("https://${params.sourceContainerRegistryHost}", "${params.sourceContainerRegistryCredentials}"){
 							sh "docker-compose config"
-                            sh "docker-compose build ${params.buildScenario}"
-							
+							sh "docker-compose build ${params.buildScenario}"							
                         }
                   }
                 }
@@ -80,7 +78,6 @@ pipeline {
                 script {
 				
 					try{
-						echo "Start ISCCR Review with flag value as ${IGNORE_ISCCR_FAILURE} and isccr install directory as ${ISCCR_HOME_DIR}"
                        sh "docker exec -w ${ISCCR_HOME_DIR} ${TEST_CONTAINER_NAME} ${ISCCR_HOME_DIR}/CodeReview.sh -Dcode.review.directory=/opt/softwareag/IntegrationServer/packages/ -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=MediaApp,Fibo,Dev -Dcode.review.folder-prefix=MediaApp,Fibo,Dev"
                         
                     }
@@ -95,12 +92,12 @@ pipeline {
                     }
 					finally{
 						echo "Copy ISCCR HTML Report"
-						sh "docker cp ${TEST_CONTAINER_NAME}:${ISCCR_HOME_DIR}/MULTI__CodeReviewReport__html-multi.html ${WORKSPACE}/report/"                    
+						sh "docker cp ${TEST_CONTAINER_NAME}:${ISCCR_HOME_DIR}/MULTI__CodeReviewReport__html-multi.html ${WORKSPACE}/report/"      
+						echo "ISCCR Report can be found at ${WORKSPACE}/report/MULTI__CodeReviewReport__html-multi.html"
 					}
 				}
             }
         }
-
 		
         stage('Test') {
             when {

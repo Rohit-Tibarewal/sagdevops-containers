@@ -1,5 +1,4 @@
 ARG PRODUCT_IMAGE
-#ARG ISCCR_HOMEDIR
 
 FROM $PRODUCT_IMAGE as default
 COPY --chown=sagadmin assets/Packages /opt/softwareag/IntegrationServer/packages/
