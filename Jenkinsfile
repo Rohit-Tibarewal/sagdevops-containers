@@ -109,7 +109,8 @@ pipeline {
                 }
             }
             steps {
-                script {
+                script {				
+					export CLASSPATH = $CLASSPATH:/var/lib/jenkins/workspace/msr-pipeline/lib/ant-junit-1.9.6.jar
 					echo "BUILD with ANT_HOME as ${env.ANT_HOME}" 
                     def testsDir = "./containers/microservices-runtime/assets/Tests"
                     sh "ant -file build.xml test -DtestISHost=${testContainerHost} -DtestISPort=${testContainerPort} -DtestObject=${params.buildScenario} -DtestDir=${testsDir} -DtestContainerName=${TEST_CONTAINER_NAME} ${params.testProperties}" 
