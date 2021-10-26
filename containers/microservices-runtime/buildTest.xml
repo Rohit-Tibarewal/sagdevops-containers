@@ -61,7 +61,8 @@
 		<exec dir="${basedir}/containers/microservices-runtime" executable="/bin/bash" osfamily="unix" vmlauncher="false" failonerror="true" >
 			<arg value="-c" />
 			<arg value="docker cp ${tempTestContainerName}:/opt/softwareag/IntegrationServer/lib/wm-isserver.jar ../../lib" />
-		</exec>  
+		</exec>
+		
 	</target>
 
         <target name="waitForContainerToStart">
