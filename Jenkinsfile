@@ -45,7 +45,7 @@ pipeline {
 	   ISCCR_HOME_DIR="${WORKSPACE}/containers/microservices-runtime/isccr"
 	   ISCCR_LICENSE_FILE="${WORKSPACE}/containers/microservices-runtime/licenses/license.txt"
 	   IGNORE_ISCCR_FAILURE="${params.ignoreISCCRFailure}"
-	   ANT_HOME="/usr/share/ant"
+	   ANT_HOME="/var/lib/jenkins/workspace/msr-pipeline/lib/lib/ant"
 	}
     
     
