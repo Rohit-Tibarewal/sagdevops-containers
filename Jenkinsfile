@@ -45,7 +45,6 @@ pipeline {
 	   ISCCR_HOME_DIR="${WORKSPACE}/containers/microservices-runtime/isccr"
 	   ISCCR_LICENSE_FILE="${WORKSPACE}/containers/microservices-runtime/licenses/license.txt"
 	   IGNORE_ISCCR_FAILURE="${params.ignoreISCCRFailure}"
-	   //ANT_HOME="/var/lib/jenkins/ant"
 	   ANT_HOME="${WORKSPACE}/lib/ant"
 	}
     
@@ -112,9 +111,10 @@ pipeline {
             }
             steps {
                 script {				
-					echo "BUILD with ANT_HOME as ${env.ANT_HOME}" 
-                    def testsDir = "./containers/microservices-runtime/assets/Tests"
-                    sh "ant -file build.xml test -DtestISHost=${testContainerHost} -DtestISPort=${testContainerPort} -DtestObject=${params.buildScenario} -DtestDir=${testsDir} -DtestContainerName=${TEST_CONTAINER_NAME} ${params.testProperties}" 
+						echo "BUILD with ANT_HOME as ${env.ANT_HOME}" 
+						sh "chmod +x -R ${env.ANT_HOME}/bin/antRun*"
+						def testsDir = "./containers/microservices-runtime/assets/Tests"
+						sh "ant -file build.xml test -DtestISHost=${testContainerHost} -DtestISPort=${testContainerPort} -DtestObject=${params.buildScenario} -DtestDir=${testsDir} -DtestContainerName=${TEST_CONTAINER_NAME} ${params.testProperties}" 
                 }
                 dir('./report') {
                     junit '*.xml'
