@@ -45,6 +45,7 @@ pipeline {
 	   ISCCR_HOME_DIR="${WORKSPACE}/containers/microservices-runtime/isccr"
 	   ISCCR_LICENSE_FILE="${WORKSPACE}/containers/microservices-runtime/licenses/license.txt"
 	   IGNORE_ISCCR_FAILURE="${params.ignoreISCCRFailure}"
+	   ANT_HOME="/usr/share/ant"
 	}
     
     
@@ -110,7 +111,6 @@ pipeline {
             }
             steps {
                 script {				
-					sh "export CLASSPATH=$CLASSPATH:/var/lib/jenkins/workspace/msr-pipeline/lib/ant-junit-1.9.6.jar"
 					echo "BUILD with ANT_HOME as ${env.ANT_HOME}" 
                     def testsDir = "./containers/microservices-runtime/assets/Tests"
                     sh "ant -file build.xml test -DtestISHost=${testContainerHost} -DtestISPort=${testContainerPort} -DtestObject=${params.buildScenario} -DtestDir=${testsDir} -DtestContainerName=${TEST_CONTAINER_NAME} ${params.testProperties}" 
