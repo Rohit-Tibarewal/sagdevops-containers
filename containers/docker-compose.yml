@@ -30,6 +30,7 @@ services:
     volumes:
       - /home/saguser/properties/prod/application.properties:/opt/softwareag/application.properties
       - /home/saguser/licenses/0000497888_MicroservicesRuntime_100.xml:/opt/softwareag/IntegrationServer/config/licenseKey.xml
+      - /home/saguser/Softwares/dd-cjdbc.jar:/opt/softwareag/common/lib/ext/dd-cjdbc.jar
     ports:
       - ${TEST_CONTAINER_PORT:-5555}:5555                            # container specific ports 1
     hostname: msr107
