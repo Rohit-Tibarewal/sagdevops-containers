@@ -28,9 +28,9 @@ services:
       args:
         - PRODUCT_IMAGE=${REG_HOST:-docker.io}/${REG_ORG:-store/softwareag}/${REPO_NAME:-webmethods-microservicesruntime}:${REPO_TAG:-10.5.0.0}
     volumes:
-      - /home/saguser/properties/prod/application.properties:/opt/softwareag/application.properties:rwx
-      - /home/saguser/licenses/0000497888_MicroservicesRuntime_100.xml:/opt/softwareag/IntegrationServer/config/licenseKey.xml:rwx
-      - /home/saguser/Softwares/sqljdbc42.jar:/opt/softwareag/IntegrationServer/packages/WmJDBCAdapter/code/jars/sqljdbc42.jar:rwx
+      - /home/saguser/properties/prod/application.properties:/opt/softwareag/application.properties:rw
+      - /home/saguser/licenses/0000497888_MicroservicesRuntime_100.xml:/opt/softwareag/IntegrationServer/config/licenseKey.xml:rw
+      - /home/saguser/Softwares/sqljdbc42.jar:/opt/softwareag/IntegrationServer/packages/WmJDBCAdapter/code/jars/sqljdbc42.jar:rw
     ports:
       - ${TEST_CONTAINER_PORT:-5555}:5555                            # container specific ports 1
     hostname: msr107cn
