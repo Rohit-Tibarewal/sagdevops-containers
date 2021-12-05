@@ -2,7 +2,10 @@ ARG PRODUCT_IMAGE
 
 FROM $PRODUCT_IMAGE as default
 COPY --chown=sagadmin assets/Packages /opt/softwareag/IntegrationServer/packages/
-RUN chown sagadmin:sagadmin /opt/softwareag/IntegrationServer/packages/WmJDBCAdapter/code/jars/sqljdbc42.jar
+
+COPY --chown=sagadmin /home/saguser/properties/prod/application.properties /opt/softwareag/application.properties
+COPY --chown=sagadmin /home/saguser/licenses/0000497888_MicroservicesRuntime_100.xml:/opt/softwareag/IntegrationServer/config/licenseKey.xml
+COPY --chown=sagadmin /home/saguser/Softwares/sqljdbc42.jar:/opt/softwareag/IntegrationServer/packages/WmJDBCAdapter/code/jars/sqljdbc42.jar
 
 #EXPOSE 5555
 
