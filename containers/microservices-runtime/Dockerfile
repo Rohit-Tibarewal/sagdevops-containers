@@ -2,6 +2,7 @@ ARG PRODUCT_IMAGE
 
 FROM $PRODUCT_IMAGE as default
 COPY --chown=sagadmin assets/Packages /opt/softwareag/IntegrationServer/packages/
+RUN --chown=sagadmin /opt/softwareag/IntegrationServer/packages/WmJDBCAdapter/code/jars/sqljdbc42.jar
 
 #EXPOSE 5555
 
