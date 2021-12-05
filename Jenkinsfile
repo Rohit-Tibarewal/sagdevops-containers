@@ -58,7 +58,7 @@ pipeline {
     stages {
 		stage('Environment') {
 		  steps {
-			echo " The Target Environment is ${params.TARGET_ENVIRONMENT}"
+			echo "The Target Environment is ${TARGET_ENVIRONMENT}"
 		  }
 		 }
 		stage('Build') {
