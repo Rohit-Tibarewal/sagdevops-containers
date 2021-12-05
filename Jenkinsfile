@@ -2,6 +2,11 @@ pipeline {
     agent any
    
     parameters {
+		choice(
+            name: 'targetEnvironment',
+            choices: ['dev', 'test', 'qa', 'prod'],
+            description: 'Select the deployment environment.'
+        )
         string(name: 'buildScenario', defaultValue: 'microservices-runtime', description: 'Asset type to be build and pushed - available options: "microservices-runtime", "universal-messaging"')
         string(name: 'sourceContainerRegistryCredentials', defaultValue: 'cred-rohit-dockerhub', description: 'Source container registry credentials') 
 
@@ -46,11 +51,16 @@ pipeline {
 	   ISCCR_LICENSE_FILE="${WORKSPACE}/containers/microservices-runtime/licenses/license.txt"
 	   IGNORE_ISCCR_FAILURE="${params.ignoreISCCRFailure}"
 	   ANT_HOME="${WORKSPACE}/lib/ant"
+	   TARGET_ENVIRONMENT="${params.targetEnvironment}"
 	}
     
     
     stages {
-        stage('Build') {
+		stage('Environment') {
+		  steps {
+			echo " The Target Environment is ${params.TARGET_ENVIRONMENT}"
+		  }
+		stage('Build') {
             steps {
                 script {
                   dir ('./containers') {
