@@ -21,7 +21,7 @@ version: "3.7"
 services:
   microservices-runtime:
     container_name: ${TEST_CONTAINER_NAME:-msrtest}
-    user: "1000:1000"
+    user: "970:970"
     image: ${TARGET_REG_HOST}/${TARGET_REG_ORG}/${TARGET_REPO_NAME}:${TARGET_REPO_TAG}
     env_file: variables.env
     build:

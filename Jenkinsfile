@@ -56,7 +56,7 @@ pipeline {
     
     
     stages {
-		stage('Environment') {
+		stage('Set Environment') {
 		  steps {
 			echo "The Target Environment is ${TARGET_ENVIRONMENT}"
 		  }
