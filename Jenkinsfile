@@ -31,7 +31,7 @@ pipeline {
         string(name: 'deploymentName', defaultValue: 'msr-demo', description: 'The Deployment name whose container needs to be updated') 
         string(name: 'targetContainerName', defaultValue: 'msr-demo-cn', description: 'The Container, inside given Deployment, whose image needs to be updated') 
 		
-		booleanParam(name: 'ignoreISCCRFailure', defaultValue: false, description: 'Whether to Ignore Code Review Failures')
+		booleanParam(name: 'ignoreISCCRFailure', defaultValue: true, description: 'Whether to Ignore Code Review Failures')
     }
     environment {
        REG_HOST="${params.sourceContainerRegistryHost}"
@@ -51,7 +51,7 @@ pipeline {
 	   ISCCR_LICENSE_FILE="${WORKSPACE}/containers/microservices-runtime/licenses/license.txt"
 	   IGNORE_ISCCR_FAILURE="${params.ignoreISCCRFailure}"
 	   ANT_HOME="${WORKSPACE}/lib/ant"
-	   TARGET_ENVIRONMENT="${params.targetEnvironment}"
+	   TARGET_ENVIRONMENT="${params.targetEnvironment}"	   
 	}
     
     
@@ -157,9 +157,11 @@ pipeline {
 					sh '''
 					echo  "Update the PATH"
 					export PATH=$PATH:/usr/local/bin:/usr/local/sbin
+					echo "Apply Config Map"
+					minikube kubectl -- apply -f ${WORKSPACE}/containers/${params.buildScenario}/properties/${TARGET_ENVIRONMENT}/msr_app_properties_configmap.yaml
                     echo  "Apply Rolling Update"
 					minikube kubectl -- set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=${TARGET_REG_ORG}/${TARGET_REPO_NAME}:${TARGET_REPO_TAG}
-					minikube kubectl -- rollout status deployment/${DEPLOYMENT_NAME} -w					
+					minikube kubectl -- rollout status deployment/${DEPLOYMENT_NAME} -w				
 					'''
             }
         }
