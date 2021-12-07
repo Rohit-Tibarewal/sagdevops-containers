@@ -158,7 +158,7 @@ pipeline {
 					echo  "Update the PATH"
 					export PATH=$PATH:/usr/local/bin:/usr/local/sbin
 					echo "Apply Config Map"
-					minikube kubectl create configmap msr-app-properties --from-file="${WORKSPACE}/containers/microservices-runtime/properties/${TARGET_ENVIRONMENT}/application.properties -o yaml --dry-run=client | kubectl replace -f -
+					minikube kubectl create configmap msr-app-properties --from-file="${WORKSPACE}/containers/microservices-runtime/properties/${TARGET_ENVIRONMENT}/application.properties" -o yaml --dry-run=client | kubectl replace -f -
                     echo  "Apply Rolling Update"
 					minikube kubectl -- set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=${TARGET_REG_ORG}/${TARGET_REPO_NAME}:${TARGET_REPO_TAG}
 					minikube kubectl -- rollout status deployment/${DEPLOYMENT_NAME} -w				
