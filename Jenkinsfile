@@ -74,7 +74,7 @@ pipeline {
                 }
             }
         }
-        stage('Run Intermediate Container') {
+        stage('Run Intermediate Standalone Container') {
             steps {
                 script {
                   dir ('./containers') {
@@ -133,11 +133,11 @@ pipeline {
                 }
             }
         }
-        stage('Stop Intermediate Container') {
+        stage('Cleanup Intermediate Standalone Container') {
             steps {
                 script {
                   dir ('./containers') {                       
-                      // sh "docker-compose stop ${params.buildScenario}"
+                       sh "docker-compose stop ${params.buildScenario}"
                     }
                 }
             }
@@ -153,7 +153,7 @@ pipeline {
                 }
             }
         }
-		stage("Release") {
+		stage("Release to ${TARGET_ENVIRONMENT}") {
             steps {
 					sh '''
 					echo  "Update the PATH"
