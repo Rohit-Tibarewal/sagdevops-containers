@@ -12,7 +12,7 @@ pipeline {
 
         string(name: 'sourceContainerRegistryHost', defaultValue: 'docker.io', description: 'Source registry host. Default points to docker store.') 
         string(name: 'sourceContainerRegistryOrg', defaultValue: 'rohittibarewal', description: 'Source registry organization. Default points to SoftwareAG organization at docker store.') 
-        string(name: 'sourceImageName', defaultValue: 'msr107centoswithvar', description: 'Source image name. Sample values from docker hub - "webmethods-microservicesruntime" and "universalmessaging-server". Check here fo all available in docker store https://hub.docker.com/search?q=softwareag&type=image&image_filter=store') 
+        string(name: 'sourceImageName', defaultValue: 'wm_msr107adapter_usinginstaller', description: 'Source image name. Sample values from docker hub - "webmethods-microservicesruntime" and "universalmessaging-server". Check here fo all available in docker store https://hub.docker.com/search?q=softwareag&type=image&image_filter=store') 
         string(name: 'sourceImageTag', defaultValue: 'base', description: 'Source image tag. For available version check the Softwareag section at docker store.') 
 
         
@@ -22,14 +22,14 @@ pipeline {
         string(name: 'targetContainerRegistryCredentials', defaultValue: 'cred-rohit-dockerhub', description: 'Target container registry credentials') 
         string(name: 'targetContainerRegistryHost', defaultValue: 'docker.io', description: 'Target container registry host') 
         string(name: 'targetContainerRegistryOrg', defaultValue: 'rohittibarewal', description: 'Target container registry organization') 
-        string(name: 'targetImageName', defaultValue: 'msr107centoswithvar', description: 'Target image name. Small caps only.') 
+        string(name: 'targetImageName', defaultValue: 'wm_msr107adapter_solutionimage', description: 'Target image name. Small caps only.') 
         string(name: 'targetImageTag', defaultValue: 'latest', description: 'Target image tag. A tag name must be valid ASCII and may contain lowercase and uppercase letters, digits, underscores, periods and dashes. A tag name may not start with a period or a dash and may contain a maximum of 128 characters.') 
         booleanParam(name: 'runTests', defaultValue: false, description: 'Whether to run test stage')
 
         string(name: 'testProperties', defaultValue: ' -DtestISUsername=Administrator -DtestISPassword=manage', description: 'test properties. The default are covering the IS test case.')
 		
-        string(name: 'deploymentName', defaultValue: 'msr-demo', description: 'The Deployment name whose container needs to be updated') 
-        string(name: 'targetContainerName', defaultValue: 'msr-demo-cn', description: 'The Container, inside given Deployment, whose image needs to be updated') 
+        string(name: 'deploymentName', defaultValue: 'msr-withadapter', description: 'The Deployment name whose container needs to be updated') 
+        string(name: 'targetContainerName', defaultValue: 'msr-withadapter-cn', description: 'The Container, inside given Deployment, whose image needs to be updated') 
 		
 		booleanParam(name: 'ignoreISCCRFailure', defaultValue: true, description: 'Whether to Ignore Code Review Failures')
     }
