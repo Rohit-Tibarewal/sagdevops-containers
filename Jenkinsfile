@@ -62,7 +62,7 @@ pipeline {
 			echo "The Target Environment is ${TARGET_ENVIRONMENT}"
 		  }
 		 }
-		stage('Build') {
+		stage('Build Solution Image') {
             steps {
                 script {
                   dir ('./containers') {
@@ -115,7 +115,7 @@ pipeline {
             }
         }
 		
-        stage('Unit Test using WmTestSuite') {
+        stage('Test using WmTestSuite') {
             when {
                 expression {
                     return params.runTests
