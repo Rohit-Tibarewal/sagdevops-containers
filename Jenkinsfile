@@ -74,7 +74,7 @@ pipeline {
                 }
             }
         }
-        stage('Run') {
+        stage('Run Intermediate Container') {
             steps {
                 script {
                   dir ('./containers') {
@@ -86,7 +86,7 @@ pipeline {
             }
         }
 		
-		stage('CodeReview-ISCCR') {
+		stage('Code Review with ISCCR') {
             steps {
                 script {
 					def isAssetsDir = "${WORKSPACE}/containers/microservices-runtime/assets/Packages"
@@ -115,7 +115,7 @@ pipeline {
             }
         }
 		
-        stage('Test') {
+        stage('Unit Test using WmTestSuite') {
             when {
                 expression {
                     return params.runTests
@@ -133,7 +133,7 @@ pipeline {
                 }
             }
         }
-        stage('Stop') {
+        stage('Stop Intermediate Container') {
             steps {
                 script {
                   dir ('./containers') {                       
@@ -142,7 +142,7 @@ pipeline {
                 }
             }
         }
-        stage("Push") {
+        stage("Push Image to Registry") {
             steps {
                 script {
                     dir ('./containers') {
