@@ -137,7 +137,7 @@ pipeline {
             steps {
                 script {
                   dir ('./containers') {                       
-                       sh "docker-compose stop ${params.buildScenario}"
+                       //sh "docker-compose stop ${params.buildScenario}"
                     }
                 }
             }
@@ -153,7 +153,7 @@ pipeline {
                 }
             }
         }
-		stage("Release to ${TARGET_ENVIRONMENT}") {
+		stage("Release") {
             steps {
 					sh '''
 					echo  "Update the PATH"
