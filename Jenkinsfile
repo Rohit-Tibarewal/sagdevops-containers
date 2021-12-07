@@ -5,7 +5,7 @@ pipeline {
 		choice(
             name: 'targetEnvironment',
             choices: ['dev', 'test', 'qa', 'prod'],
-            description: 'Select the deployment environment.'
+            description: 'Select the deployment environment'
         )
         string(name: 'buildScenario', defaultValue: 'microservices-runtime', description: 'Asset type to be build and pushed - available options: "microservices-runtime", "universal-messaging"')
         string(name: 'sourceContainerRegistryCredentials', defaultValue: 'cred-rohit-dockerhub', description: 'Source container registry credentials') 
@@ -34,7 +34,8 @@ pipeline {
 		booleanParam(name: 'ignoreISCCRFailure', defaultValue: true, description: 'Whether to Ignore Code Review Failures')
     }
     environment {
-       REG_HOST="${params.sourceContainerRegistryHost}"
+       BUILD_SCENARIO="${params.buildScenario}"
+	   REG_HOST="${params.sourceContainerRegistryHost}"
        REG_ORG="${params.sourceContainerRegistryOrg}"
        REPO_NAME="${params.sourceImageName}"
        REPO_TAG="${params.sourceImageTag}"
@@ -158,7 +159,7 @@ pipeline {
 					echo  "Update the PATH"
 					export PATH=$PATH:/usr/local/bin:/usr/local/sbin
 					echo "Apply Config Map"
-					kubectl create configmap msr-app-properties --from-file=${WORKSPACE}/containers/microservices-runtime/properties/${TARGET_ENVIRONMENT}/application.properties -o yaml --dry-run=client | kubectl replace -f -
+					kubectl create configmap msr-app-properties --from-file=${WORKSPACE}/containers/${BUILD_SCENARIO}/properties/${TARGET_ENVIRONMENT}/application.properties -o yaml --dry-run=client | kubectl replace -f -
                     echo  "Apply Rolling Update"
 					minikube kubectl -- set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=${TARGET_REG_ORG}/${TARGET_REPO_NAME}:${TARGET_REPO_TAG}
 					minikube kubectl -- rollout status deployment/${DEPLOYMENT_NAME} -w				
