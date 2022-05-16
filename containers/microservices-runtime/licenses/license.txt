@@ -1,11 +1,11 @@
 productId=ISContinuousCodeReview
 productVersion=any
-serialNumber=0dcf9508-8fda-45ae-9f3a-fd7fc0dbf492
+serialNumber=913e88d7-2ecb-4d67-acfd-69d4bfb089c5
 customerName=Software AG
 customerOrganization=GCS
 features=all
-expiryDate=02/16/2022
+expiryDate=02/27/2023
 numberOfCopies=1
-comments=Issued to user hpn. For internal use only.
+comments=Issued to user roti. For internal use only.
 licenseVersion=2
-licenseKey=MC0CFHkcFLHlpdxX10W5DkzrLFXd2NCZAhUAi1+FLz46CzowIuy5d2OzsNErpKc=
+licenseKey=MCwCFFS9lHrDiWGi8FmIKKfZoeCEweqSAhQXSaRuXr2pSxDeoN84BGzVYTh5PA==
