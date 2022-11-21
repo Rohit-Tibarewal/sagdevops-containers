@@ -91,9 +91,21 @@ pipeline {
                 script {
 					def isAssetsDir = "${WORKSPACE}/containers/microservices-runtime/assets/Packages"
 					try{
-                       sh "cp ${ISCCR_LICENSE_FILE} ${ISCCR_HOME_DIR}/."
-					   sh "chmod +x ${ISCCR_HOME_DIR}/CodeReview.sh"
-					   sh "cd ${ISCCR_HOME_DIR} && ./CodeReview.sh -Dcode.review.directory=${isAssetsDir} -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=Fibo,Dev -Dcode.review.folder-prefix=Fibo,Dev"
+                      
+					  sh '''
+					   	cp ${ISCCR_LICENSE_FILE} ${ISCCR_HOME_DIR}/.
+					   	chmod +x ${ISCCR_HOME_DIR}/CodeReview.sh
+    					echo  "Temp Update the PATH and JAVA_HOME variable for ISCCR"
+    					export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.342.b07-2.el8_6.x86_64/jre
+    					export PATH=$JAVA_HOME/bin:$PATH
+    					export isAssetsDir=$isAssetsDir
+    					echo IS assets directory value is ${isAssetsDir}
+    					cd ${ISCCR_HOME_DIR} && ./CodeReview.sh -Dcode.review.directory=${isAssetsDir} -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=Fibo,Dev -Dcode.review.folder-prefix=Fibo,Dev
+    					'''
+					  
+					  // sh "cp ${ISCCR_LICENSE_FILE} ${ISCCR_HOME_DIR}/."
+					  // sh "chmod +x ${ISCCR_HOME_DIR}/CodeReview.sh"
+					  // sh "cd ${ISCCR_HOME_DIR} && ./CodeReview.sh -Dcode.review.directory=${isAssetsDir} -Dcode.review.runmode=MULTI -Dcode.review.pkgprefix=Fibo,Dev -Dcode.review.folder-prefix=Fibo,Dev"
                         
                     }
 					catch(error){
